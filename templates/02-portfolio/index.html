@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mara Vance: independent product &amp; brand designer</title>
+<meta name="description" content="Mara Vance is an independent designer building brands and product interfaces for founders who care about the details." />
+<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MARA VANCE — portfolio template
+   Aesthetic: poster / studio. Vermilion on warm-white, grayscale
+   imagery, asymmetric, oversized condensed display type.
+   Fonts: Big Shoulders Display + Hanken Grotesk. Dependency-free.
+   Edit the :root tokens to rebrand.
+   ============================================================ */
+:root{
+  --bg:        oklch(0.98 0 0);
+  --ink:       oklch(0.17 0 0);
+  --ink-soft:  oklch(0.40 0 0);
+  --muted:     oklch(0.55 0 0);
+  --line:      oklch(0.87 0 0);
+  --accent:    oklch(0.605 0.214 29);
+  --accent-deep: oklch(0.50 0.20 30);
+  --dark:      oklch(0.155 0 0);
+  --on-dark:   oklch(0.97 0 0);
+  --on-dark-soft: oklch(0.70 0 0);
+
+  --display: "Big Shoulders Display", system-ui, sans-serif;
+  --body: "Hanken Grotesk", system-ui, sans-serif;
+
+  --maxw: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:clamp(1rem,0.96rem+0.2vw,1.08rem);
+  line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:0.92; letter-spacing:-0.01em; text-transform:uppercase; margin:0; text-wrap:balance; }
+h1{ font-size:clamp(3.2rem, 1.6rem + 8vw, 9rem); }
+h2{ font-size:clamp(2.4rem, 1.4rem + 4vw, 5rem); }
+h3{ font-size:clamp(1.4rem, 1.1rem + 1.2vw, 2rem); }
+p{ text-wrap:pretty; }
+.label{ font-family:var(--body); font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); }
+.accent{ color:var(--accent); }
+
+.btn{
+  display:inline-flex; align-items:center; gap:0.6em;
+  font-weight:600; font-size:0.98rem; letter-spacing:0.01em;
+  padding:0.9em 1.5em; border-radius:99px;
+  background:var(--ink); color:var(--bg); border:1.5px solid var(--ink);
+  transition:transform .35s var(--ease), background .25s, color .25s, border-color .25s;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--accent); border-color:var(--accent); }
+.btn--out{ background:transparent; color:var(--ink); }
+.btn--out:hover{ color:var(--bg); }
+.btn svg{ width:1em; height:1em; }
+.arrow{ display:inline-flex; align-items:center; gap:0.4em; font-weight:600; color:var(--accent); }
+.arrow svg{ width:0.9em; height:0.9em; transition:transform .3s var(--ease); }
+.arrow:hover svg{ transform:translate(3px,-3px); }
+
+/* reveal */
+.js .rv{ opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .js .rv{ opacity:1!important; transform:none!important; } }
+
+/* nav */
+.nav{ position:sticky; top:0; z-index:40; background:color-mix(in oklch,var(--bg) 86%,transparent); backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:border-color .3s; }
+.nav.scrolled{ border-bottom-color:var(--line); }
+.nav__in{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.5rem; letter-spacing:0.01em; text-transform:uppercase; }
+.logo span{ color:var(--accent); }
+.nav__links{ display:flex; gap:2rem; align-items:center; }
+.nav__links a{ font-weight:600; font-size:0.95rem; color:var(--ink-soft); transition:color .2s; }
+.nav__links a:hover{ color:var(--accent); }
+@media (max-width:760px){ .nav__links a:not(.btn){ display:none; } }
+
+/* hero */
+.hero{ padding:clamp(2.5rem,6vw,5.5rem) 0 clamp(3rem,6vw,6rem); position:relative; }
+.hero__top{ display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap; }
+.hero__avail{ display:inline-flex; align-items:center; gap:0.6em; font-weight:600; font-size:0.9rem; color:var(--ink-soft); }
+.hero__avail::before{ content:""; width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in oklch,var(--accent) 22%, transparent); }
+.hero h1{ margin:0.6em 0 0; }
+.hero h1 .out{ -webkit-text-stroke:2px var(--ink); color:transparent; }
+.hero__grid{ display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(1.5rem,4vw,3.5rem); align-items:end; margin-top:clamp(2rem,4vw,3rem); }
+@media (max-width:820px){ .hero__grid{ grid-template-columns:1fr; } }
+.hero__intro{ font-size:clamp(1.15rem,1rem+0.7vw,1.45rem); line-height:1.45; max-width:34ch; color:var(--ink-soft); }
+.hero__intro b{ color:var(--ink); font-weight:600; }
+.hero__portrait{ position:relative; aspect-ratio:4/5; border-radius:8px; overflow:hidden; background:var(--line); }
+.hero__portrait img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05); transition:filter .6s var(--ease), transform 1.2s var(--ease); }
+.hero__portrait:hover img{ filter:grayscale(0); transform:scale(1.03); }
+.hero__portrait figcaption{ position:absolute; left:0; bottom:0; right:0; padding:0.8rem 1rem; font-family:var(--display); text-transform:uppercase; font-weight:600; font-size:0.9rem; letter-spacing:0.06em; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,0.6), transparent); }
+
+/* marquee strip */
+.strip{ border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); overflow:hidden; padding:0.9rem 0; }
+.strip__row{ display:flex; gap:2.5rem; white-space:nowrap; font-family:var(--display); text-transform:uppercase; font-weight:700; font-size:1.4rem; letter-spacing:0.02em; will-change:transform; animation:slide 26s linear infinite; }
+.strip__row span{ display:inline-flex; align-items:center; gap:2.5rem; color:var(--ink); }
+.strip__row span::after{ content:"✳"; color:var(--accent); }
+@keyframes slide{ to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .strip__row{ animation:none; justify-content:center; } }
+.strip:hover .strip__row{ animation-play-state:paused; }
+
+/* section heads */
+.section{ padding:clamp(4rem,8vw,7.5rem) 0; }
+.shead{ display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; margin-bottom:clamp(2rem,4vw,3.5rem); flex-wrap:wrap; }
+.shead .label{ align-self:flex-start; }
+
+/* work list */
+.work{ border-top:1.5px solid var(--ink); }
+.work__item{ display:grid; grid-template-columns:auto 1fr auto; gap:clamp(1rem,3vw,2.5rem); align-items:center; padding:clamp(1.4rem,3vw,2.2rem) 0; border-bottom:1px solid var(--line); position:relative; transition:transform .4s var(--ease); }
+.work__item:hover{ transform:translateX(12px); }
+.work__num{ font-family:var(--display); font-weight:700; font-size:1.1rem; color:var(--muted); }
+.work__main{ display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); min-width:0; }
+.work__thumb{ width:clamp(64px,12vw,128px); aspect-ratio:4/3; border-radius:6px; overflow:hidden; background:var(--line); flex:none; }
+.work__thumb img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1); transition:filter .5s var(--ease), transform .8s var(--ease); }
+.work__item:hover .work__thumb img{ filter:grayscale(0); transform:scale(1.06); }
+.work__title{ min-width:0; }
+.work__title h3{ font-size:clamp(1.5rem,1.1rem+1.8vw,2.6rem); transition:color .3s; }
+.work__item:hover .work__title h3{ color:var(--accent); }
+.work__title p{ margin:0.2rem 0 0; color:var(--muted); font-size:0.92rem; }
+.work__year{ font-family:var(--display); font-weight:600; font-size:1.1rem; color:var(--ink-soft); }
+@media (max-width:680px){
+  .work__item{ grid-template-columns:auto 1fr; }
+  .work__year{ display:none; }
+  .work__thumb{ display:none; }
+}
+
+/* about */
+.about{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,5rem); align-items:start; }
+@media (max-width:820px){ .about{ grid-template-columns:1fr; } }
+.about__big{ font-family:var(--display); text-transform:uppercase; font-weight:700; font-size:clamp(1.6rem,1.2rem+2vw,2.8rem); line-height:1.02; }
+.about__big .accent{ color:var(--accent); }
+.about__col p{ color:var(--ink-soft); max-width:46ch; }
+.about__col p + p{ margin-top:1rem; }
+.facts{ list-style:none; margin:2rem 0 0; padding:0; display:grid; gap:0; border-top:1px solid var(--line); }
+.facts li{ display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; border-bottom:1px solid var(--line); font-size:0.95rem; }
+.facts b{ font-family:var(--display); text-transform:uppercase; font-weight:600; letter-spacing:0.04em; }
+.facts span{ color:var(--muted); }
+
+/* services */
+.svc{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+@media (max-width:820px){ .svc{ grid-template-columns:1fr; max-width:520px; } }
+.svc__item{ padding:1.6rem 0 0; border-top:1.5px solid var(--ink); }
+.svc__item h3{ font-size:1.5rem; margin:0 0 0.6rem; position:relative; padding-left:1.4rem; }
+.svc__item h3::before{ content:""; position:absolute; left:0; top:0.55em; width:0.8rem; height:0.8rem; background:var(--accent); }
+.svc__item p{ color:var(--ink-soft); font-size:0.96rem; max-width:34ch; }
+
+/* contact drench */
+.contact{ background:var(--dark); color:var(--on-dark); border-radius:clamp(14px,2vw,22px); margin:0 var(--gutter); padding:clamp(3.5rem,7vw,7rem) clamp(1.5rem,5vw,4.5rem); }
+.contact__in{ max-width:var(--maxw); margin-inline:auto; }
+.contact .label{ color:var(--accent); }
+.contact h2{ color:var(--on-dark); margin:1rem 0 0; }
+.contact h2 .mail{ color:var(--accent); text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:6px; transition:color .25s; }
+.contact h2 .mail:hover{ color:var(--on-dark); }
+.contact__row{ display:flex; flex-wrap:wrap; gap:1rem 2.5rem; align-items:center; margin-top:clamp(2rem,4vw,3rem); }
+.contact__row .btn{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.contact__row .btn:hover{ background:var(--on-dark); border-color:var(--on-dark); color:var(--dark); }
+.contact__socials{ display:flex; gap:1.5rem; }
+.contact__socials a{ font-weight:600; color:var(--on-dark-soft); transition:color .2s; }
+.contact__socials a:hover{ color:var(--accent); }
+
+/* footer */
+.foot{ padding:clamp(2.5rem,4vw,3.5rem) 0; }
+.foot__in{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:0.88rem; color:var(--muted); }
+.foot__in a{ color:var(--ink-soft); }
+.foot__in a:hover{ color:var(--accent); }
+::selection{ background:var(--accent); color:#fff; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="logo" href="#">Mara<span>.</span>Vance</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="btn btn--out">Let's talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__top">
+      <span class="hero__avail rv">Available for projects · Q3 2026</span>
+      <span class="label rv">Independent · Lisbon &amp; remote</span>
+    </div>
+    <h1 class="rv">Brand &amp; product<br>design for<br><span class="out">founders</span> <span class="accent">who sweat</span><br>the details.</h1>
+    <div class="hero__grid">
+      <p class="hero__intro rv">I'm <b>Mara Vance</b>, a designer working solo with early teams. I take a rough idea and ship it as a brand and an interface people actually trust, end to end, no handoff lost in translation.</p>
+      <figure class="hero__portrait rv">
+        <img src="https://picsum.photos/seed/maravance/700/900?grayscale" alt="Mara Vance, designer, at her studio desk" loading="eager" />
+        <figcaption>In the studio, 2026</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="strip" aria-hidden="true">
+  <div class="strip__row">
+    <span>Brand systems</span><span>Product UI</span><span>Design sprints</span><span>Webflow build</span><span>Art direction</span>
+    <span>Brand systems</span><span>Product UI</span><span>Design sprints</span><span>Webflow build</span><span>Art direction</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="shead">
+      <span class="label">Selected work</span>
+      <span class="label">2022 — 2026</span>
+    </div>
+    <div class="work">
+      <a class="work__item rv" href="#">
+        <span class="work__num">01</span>
+        <div class="work__main">
+          <div class="work__thumb"><img src="https://picsum.photos/seed/proj-keel/600/450?grayscale" alt="Keel banking app, dark interface screens"/></div>
+          <div class="work__title"><h3>Keel</h3><p>Brand + product · fintech</p></div>
+        </div>
+        <span class="work__year">'26</span>
+      </a>
+      <a class="work__item rv" href="#">
+        <span class="work__num">02</span>
+        <div class="work__main">
+          <div class="work__thumb"><img src="https://picsum.photos/seed/proj-fern/600/450?grayscale" alt="Fern skincare packaging on a plinth"/></div>
+          <div class="work__title"><h3>Fern Goods</h3><p>Identity · packaging</p></div>
+        </div>
+        <span class="work__year">'25</span>
+      </a>
+      <a class="work__item rv" href="#">
+        <span class="work__num">03</span>
+        <div class="work__main">
+          <div class="work__thumb"><img src="https://picsum.photos/seed/proj-atlas/600/450?grayscale" alt="Atlas analytics dashboard on a laptop"/></div>
+          <div class="work__title"><h3>Atlas Maps</h3><p>Product UI · SaaS</p></div>
+        </div>
+        <span class="work__year">'25</span>
+      </a>
+      <a class="work__item rv" href="#">
+        <span class="work__num">04</span>
+        <div class="work__main">
+          <div class="work__thumb"><img src="https://picsum.photos/seed/proj-noon/600/450?grayscale" alt="Noon coffee storefront signage"/></div>
+          <div class="work__title"><h3>Noon Coffee</h3><p>Identity · web</p></div>
+        </div>
+        <span class="work__year">'24</span>
+      </a>
+      <a class="work__item rv" href="#">
+        <span class="work__num">05</span>
+        <div class="work__main">
+          <div class="work__thumb"><img src="https://picsum.photos/seed/proj-vela/600/450?grayscale" alt="Vela editorial website on a tablet"/></div>
+          <div class="work__title"><h3>Vela Press</h3><p>Editorial · web</p></div>
+        </div>
+        <span class="work__year">'23</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about" style="padding-top:0">
+  <div class="wrap about">
+    <div class="about__col rv">
+      <p class="about__big">Twelve years in studios. Now I bring the <span class="accent">whole picture</span> to one or two teams at a time.</p>
+    </div>
+    <div class="about__col rv">
+      <p>I spent a decade inside agencies and one venture-backed product team before going independent. That mix means I think in systems and ship in pixels: a name, a logo, a type scale, and the live screens that use them, without three vendors and a lost month between them.</p>
+      <p>I work in focused engagements, usually four to eight weeks, with one founder in the room. Fewer clients, more care.</p>
+      <ul class="facts">
+        <li><b>Based in</b><span>Lisbon, working remote</span></li>
+        <li><b>Tools</b><span>Figma, Webflow, a sketchbook</span></li>
+        <li><b>Engagement</b><span>4–8 week sprints</span></li>
+        <li><b>Past</b><span>Pentagram, Stripe, solo</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead"><span class="label">What I do</span></div>
+    <div class="svc">
+      <div class="svc__item rv">
+        <h3>Brand systems</h3>
+        <p>Naming, logo, type, color and the rules that keep it coherent as you grow. A brand you can actually run.</p>
+      </div>
+      <div class="svc__item rv">
+        <h3>Product design</h3>
+        <p>From first flows to a shippable interface. Designed in Figma, handed off clean, or built in Webflow with you.</p>
+      </div>
+      <div class="svc__item rv">
+        <h3>Design sprints</h3>
+        <p>One intense week to turn a fuzzy idea into a tested, designed direction your team can build against.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact__in">
+    <span class="label">Start something</span>
+    <h2 class="rv">Got a project worth<br>doing right? <a class="mail" href="mailto:hello@maravance.com">hello@maravance.com</a></h2>
+    <div class="contact__row">
+      <a href="mailto:hello@maravance.com" class="btn">Book an intro call
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="contact__socials">
+        <a href="#">Instagram</a><a href="#">Read.cv</a><a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>© 2026 Mara Vance</span>
+    <span>Template by <a href="https://murzi.studio">murzi.studio</a></span>
+    <span>Lisbon · 38.7223° N</span>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',scrollY>8);
+onScroll(); addEventListener('scroll',onScroll,{passive:true});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rv=document.querySelectorAll('.rv');
+if(reduce||!('IntersectionObserver'in window)){ rv.forEach(e=>e.classList.add('in')); }
+else{ const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:0.06}); rv.forEach(e=>io.observe(e)); }
+</script>
+</body>
+</html>

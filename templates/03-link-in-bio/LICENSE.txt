@@ -1,0 +1,23 @@
+murzi/store — Single Commercial License
+Template: "NOVA" (Link-in-bio / Creator)
+
+Copyright (c) 2026 murzi.studio. All rights reserved.
+
+WHAT YOU MAY DO
+- Use this template for ONE end product (your own or a single client's),
+  including commercial projects.
+- Modify the files freely to fit that product.
+- Deploy and host the result anywhere, with no attribution required.
+
+WHAT YOU MAY NOT DO
+- Resell, redistribute, sublicense, or give away the template files
+  themselves (the source), modified or not.
+- Include the template in another template, theme, kit, or marketplace.
+- Use one purchase across multiple unrelated end products.
+
+The product is the website you build with this file, not the source file.
+
+Need a multi-use or extended license? Contact murzi.studio.
+
+Fonts are loaded from Google Fonts under their respective open licenses.
+Placeholder imagery (picsum.photos) is for demo only; replace before launch.

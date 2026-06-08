@@ -1,0 +1,19 @@
+# --- Never publish these ---
+
+# The paid product zips (bot delivers them privately)
+dist/
+
+# Bot token / secrets
+bot/config.json
+bot/.venv/
+bot/__pycache__/
+*.pyc
+
+# Local tooling / skills (not part of the store)
+.claude/
+.agents/
+.cursor/
+.gemini/
+node_modules/
+
+# Safe to publish: index.html + templates/  (storefront + live previews)

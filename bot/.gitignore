@@ -1,0 +1,6 @@
+# never commit the bot token
+config.json
+__pycache__/
+*.pyc
+.venv/
+venv/

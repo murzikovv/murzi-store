@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beacon: anomaly detection that explains itself</title>
+<meta name="description" content="Beacon watches your systems, flags what changed, and tells you why. Real-time anomaly detection for engineering teams." />
+<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BEACON — landing template
+   Aesthetic: precision instrument / blueprint. Committed cobalt
+   on pure white, amber signal accent, one drenched dark band.
+   Fonts: Bricolage Grotesque (display+body) + Spline Sans Mono.
+   Dependency-free. Edit the tokens below to rebrand.
+   ============================================================ */
+
+:root{
+  /* ---- color (OKLCH) ---- */
+  --bg:        oklch(1 0 0);
+  --ink:       oklch(0.21 0.013 252);
+  --ink-soft:  oklch(0.43 0.016 252);
+  --muted:     oklch(0.55 0.012 252);
+  --line:      oklch(0.91 0.012 252);
+  --grid:      oklch(0.955 0.014 252);
+  --primary:   oklch(0.55 0.16 254);
+  --primary-deep: oklch(0.45 0.155 256);
+  --primary-tint: oklch(0.96 0.028 254);
+  --accent:    oklch(0.80 0.145 73);
+  --accent-deep: oklch(0.68 0.15 60);
+  --dark:      oklch(0.19 0.032 258);
+  --dark-2:    oklch(0.24 0.038 258);
+  --on-dark:   oklch(0.96 0.008 252);
+  --on-dark-soft: oklch(0.74 0.02 252);
+
+  /* ---- type ---- */
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --mono: "Spline Sans Mono", ui-monospace, monospace;
+
+  /* ---- space + shape ---- */
+  --r: 6px;
+  --r-lg: 12px;
+  --maxw: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1); /* ease-out-quint-ish */
+}
+
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0;
+  font-family:var(--display);
+  font-weight:380;
+  font-size:clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--bg);
+  /* blueprint graph paper, very faint */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:36px 36px, 36px 36px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* ---------- primitives ---------- */
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+.eyebrow,.mono{ font-family:var(--mono); font-weight:500; letter-spacing:0.02em; }
+.tag{
+  display:inline-flex; align-items:center; gap:0.55em;
+  font-family:var(--mono); font-size:0.72rem; font-weight:500;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--primary-deep);
+}
+.tag::before{
+  content:""; width:7px; height:7px; border-radius:50%;
+  background:var(--accent); box-shadow:0 0 0 4px color-mix(in oklch, var(--accent) 22%, transparent);
+}
+h1,h2,h3{ font-weight:600; line-height:1.04; letter-spacing:-0.025em; text-wrap:balance; margin:0; }
+h1{ font-size:clamp(2.6rem, 1.6rem + 4.4vw, 5.1rem); letter-spacing:-0.035em; }
+h2{ font-size:clamp(2rem, 1.4rem + 2.6vw, 3.3rem); letter-spacing:-0.03em; }
+h3{ font-size:clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem); }
+p{ text-wrap:pretty; }
+a{ color:inherit; text-decoration:none; }
+
+.btn{
+  --bg-b:var(--ink); --fg-b:var(--bg);
+  display:inline-flex; align-items:center; gap:0.6em;
+  font-family:var(--mono); font-size:0.86rem; font-weight:500; letter-spacing:0.01em;
+  padding:0.85em 1.4em; border-radius:var(--r);
+  background:var(--bg-b); color:var(--fg-b);
+  border:1px solid var(--bg-b);
+  cursor:pointer; transition:transform .35s var(--ease), background .25s, box-shadow .35s var(--ease);
+  will-change:transform;
+}
+.btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px -12px color-mix(in oklch, var(--ink) 55%, transparent); }
+.btn--primary{ --bg-b:var(--primary); --fg-b:#fff; }
+.btn--primary:hover{ box-shadow:0 12px 30px -10px color-mix(in oklch, var(--primary) 60%, transparent); }
+.btn--ghost{ --bg-b:transparent; --fg-b:var(--ink); border-color:var(--line); }
+.btn--ghost:hover{ background:var(--primary-tint); border-color:color-mix(in oklch,var(--primary) 40%, var(--line)); box-shadow:none; }
+.btn svg{ width:1em; height:1em; }
+
+.link-arrow{
+  font-family:var(--mono); font-size:0.86rem; font-weight:500; color:var(--primary-deep);
+  display:inline-flex; align-items:center; gap:0.45em;
+}
+.link-arrow svg{ width:0.9em; height:0.9em; transition:transform .3s var(--ease); }
+.link-arrow:hover svg{ transform:translateX(4px); }
+
+/* ---------- reveal motion (enhances already-visible content) ---------- */
+.js .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.in{ opacity:1; transform:none; }
+.js [data-stagger] > *{ transition-delay:calc(var(--i,0) * 70ms); }
+@media (prefers-reduced-motion: reduce){
+  .js .reveal{ opacity:1 !important; transform:none !important; transition:none; }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(1.4) blur(8px);
+  background:color-mix(in oklch, var(--bg) 82%, transparent);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s, background .3s;
+}
+.nav.scrolled{ border-bottom-color:var(--line); background:color-mix(in oklch, var(--bg) 92%, transparent); }
+.nav__in{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+.brand{ display:flex; align-items:center; gap:0.6em; font-weight:600; font-size:1.18rem; letter-spacing:-0.02em; }
+.brand__mark{ width:26px; height:26px; color:var(--primary); }
+.nav__links{ display:flex; align-items:center; gap:2rem; }
+.nav__links a{ font-size:0.95rem; color:var(--ink-soft); transition:color .2s; }
+.nav__links a:hover{ color:var(--ink); }
+.nav__cta{ display:flex; align-items:center; gap:0.9rem; }
+.nav__menu{ display:none; }
+@media (max-width:880px){
+  .nav__links{ display:none; }
+  .nav__cta .btn--ghost{ display:none; }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{ position:relative; padding-top:clamp(3rem,6vw,6rem); padding-bottom:clamp(3rem,5vw,5rem); }
+.hero__grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(2rem,4vw,4rem); align-items:center; }
+@media (max-width:980px){ .hero__grid{ grid-template-columns:1fr; gap:2.5rem; } }
+.hero__copy{ max-width:34ch; }
+.hero h1{ margin:1.2rem 0 0; }
+.hero h1 em{ font-style:normal; color:var(--primary); position:relative; }
+.hero__lead{ margin:1.5rem 0 0; font-size:clamp(1.1rem,1rem+0.5vw,1.3rem); color:var(--ink-soft); max-width:42ch; line-height:1.5; }
+.hero__actions{ display:flex; flex-wrap:wrap; gap:0.9rem; margin-top:2.2rem; align-items:center; }
+.hero__meta{ margin-top:2.4rem; display:flex; gap:1.8rem; flex-wrap:wrap; }
+.hero__meta div{ display:flex; flex-direction:column; gap:0.15rem; }
+.hero__meta dt{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); }
+.hero__meta dd{ margin:0; font-weight:600; font-size:1.35rem; letter-spacing:-0.02em; }
+.hero__meta dd span{ color:var(--primary); }
+
+/* corner registration marks */
+.crosshair{ position:absolute; width:18px; height:18px; color:var(--line); pointer-events:none; }
+.crosshair svg{ width:100%; height:100%; }
+
+/* ---- product mockup (custom SVG dashboard) ---- */
+.device{
+  position:relative; border-radius:var(--r-lg);
+  background:var(--bg);
+  border:1px solid var(--line);
+  box-shadow:0 1px 0 oklch(1 0 0), 0 30px 60px -34px color-mix(in oklch,var(--primary) 40%, transparent), 0 12px 28px -22px oklch(0 0 0 / 0.4);
+  overflow:hidden;
+}
+.device::before{ /* measurement annotation */
+  content:"fig.01 / live signal"; position:absolute; top:-1.7rem; left:2px;
+  font-family:var(--mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.03em;
+}
+.device__bar{ display:flex; align-items:center; gap:0.5rem; padding:0.7rem 0.9rem; border-bottom:1px solid var(--line); }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--line); }
+.device__bar .mono{ margin-left:auto; font-size:0.72rem; color:var(--muted); }
+.device__body{ padding:1.1rem 1.1rem 1.3rem; }
+.panel-row{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:0.6rem; }
+.panel-row h4{ margin:0; font-size:0.95rem; font-weight:600; }
+.panel-row .mono{ font-size:0.74rem; color:var(--primary-deep); }
+.chart{ width:100%; height:118px; display:block; }
+.chart .axis{ stroke:var(--line); stroke-width:1; }
+.chart .area{ fill:url(#bgrad); }
+.chart .line{ fill:none; stroke:var(--primary); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.chart .pulse{ fill:var(--accent); }
+.chart .flag{ stroke:var(--accent-deep); stroke-width:1.5; stroke-dasharray:3 3; }
+.js .chart .line{ stroke-dasharray:620; stroke-dashoffset:620; animation:draw 2.4s var(--ease) .3s forwards; }
+.js .chart .pulse{ animation:blip 2.6s ease-in-out 2.6s infinite; }
+@keyframes draw{ to{ stroke-dashoffset:0; } }
+@keyframes blip{ 0%,100%{ r:3.5; opacity:1;} 50%{ r:6; opacity:0.65; } }
+@media (prefers-reduced-motion: reduce){
+  .js .chart .line{ animation:none; stroke-dashoffset:0; }
+  .js .chart .pulse{ animation:none; }
+}
+.readout{ display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; margin-top:1rem; }
+.readout div{ border:1px solid var(--line); border-radius:var(--r); padding:0.6rem 0.7rem; }
+.readout .mono{ font-size:0.68rem; color:var(--muted); display:block; }
+.readout b{ font-size:1.15rem; font-weight:600; letter-spacing:-0.02em; }
+.readout .up{ color:var(--primary); } .readout .warn{ color:var(--accent-deep); }
+.alert{
+  margin-top:0.9rem; display:flex; gap:0.7rem; align-items:flex-start;
+  padding:0.7rem 0.8rem; border-radius:var(--r);
+  background:color-mix(in oklch, var(--accent) 14%, var(--bg));
+  border:1px solid color-mix(in oklch, var(--accent) 40%, var(--line));
+}
+.alert svg{ width:18px; height:18px; color:var(--accent-deep); flex:none; margin-top:2px; }
+.alert p{ margin:0; font-size:0.82rem; line-height:1.4; color:var(--ink); }
+.alert b{ font-weight:600; }
+
+/* ============================================================
+   TRUST BAR
+   ============================================================ */
+.trust{ padding:2.5rem 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:1rem; }
+.trust p{ font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); text-align:center; margin:0 0 1.4rem; }
+.trust__row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:clamp(1.5rem,5vw,3.5rem); }
+.trust__row span{ font-weight:600; font-size:1.15rem; letter-spacing:-0.02em; color:var(--ink-soft); opacity:0.8; }
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+section{ position:relative; }
+.section{ padding:clamp(4.5rem,8vw,8rem) 0; }
+.section__head{ max-width:54ch; margin-bottom:clamp(2.5rem,5vw,4rem); }
+.section__head .tag{ margin-bottom:1rem; }
+.section__head p{ margin:1.1rem 0 0; color:var(--ink-soft); font-size:1.15rem; }
+
+/* ---- features: alternating rows, not identical cards ---- */
+.feature{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,5rem); align-items:center; padding:clamp(2rem,4vw,3.5rem) 0; border-top:1px solid var(--line); }
+.feature:nth-child(even) .feature__art{ order:-1; }
+@media (max-width:860px){ .feature{ grid-template-columns:1fr; gap:1.8rem; } .feature:nth-child(even) .feature__art{ order:0; } }
+.feature__copy h3{ margin-bottom:0.7rem; }
+.feature__copy p{ color:var(--ink-soft); max-width:46ch; }
+.feature__copy .num{ font-family:var(--mono); font-size:0.74rem; color:var(--primary-deep); display:block; margin-bottom:0.6rem; }
+.feature__copy ul{ list-style:none; padding:0; margin:1.3rem 0 0; display:grid; gap:0.55rem; }
+.feature__copy li{ position:relative; padding-left:1.6rem; font-size:0.96rem; color:var(--ink-soft); }
+.feature__copy li::before{ content:""; position:absolute; left:0; top:0.55em; width:9px; height:9px; border:2px solid var(--primary); border-radius:2px; }
+.feature__art{ position:relative; }
+.diagram{ width:100%; height:auto; border:1px solid var(--line); border-radius:var(--r-lg); background:linear-gradient(180deg, var(--bg), color-mix(in oklch,var(--primary-tint) 50%, var(--bg))); display:block; }
+
+/* ============================================================
+   HOW IT WORKS — a real 3-step sequence
+   ============================================================ */
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; counter-reset:s; }
+@media (max-width:780px){ .steps{ grid-template-columns:1fr; } }
+.step{ position:relative; padding-top:2.6rem; }
+.step::before{
+  counter-increment:s; content:"0" counter(s);
+  font-family:var(--mono); font-weight:600; font-size:0.9rem; color:#fff;
+  position:absolute; top:0; left:0; width:2.4rem; height:2.4rem;
+  display:grid; place-items:center; border-radius:var(--r); background:var(--primary);
+}
+.step::after{ content:""; position:absolute; top:1.2rem; left:2.9rem; right:-1.4rem; height:1px; background:var(--line); }
+.steps .step:last-child::after{ display:none; }
+@media (max-width:780px){ .step::after{ display:none; } }
+.step h3{ font-size:1.2rem; margin-bottom:0.5rem; }
+.step p{ color:var(--ink-soft); font-size:0.96rem; }
+
+/* ============================================================
+   DARK BAND (drenched, art-directed)
+   ============================================================ */
+.band{
+  position:relative; color:var(--on-dark);
+  background:radial-gradient(120% 140% at 80% 0%, var(--dark-2), var(--dark) 60%);
+  border-radius:clamp(16px,2vw,24px);
+  margin:clamp(2rem,5vw,4rem) var(--gutter);
+  padding:clamp(3rem,6vw,5.5rem) clamp(1.5rem,5vw,4rem);
+  overflow:hidden;
+}
+.band::before{ /* faint grid inside dark */
+  content:""; position:absolute; inset:0; opacity:0.5;
+  background-image:linear-gradient(color-mix(in oklch,var(--on-dark) 7%, transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in oklch,var(--on-dark) 7%, transparent) 1px,transparent 1px);
+  background-size:36px 36px,36px 36px; mask:radial-gradient(120% 120% at 70% 10%, #000, transparent 75%);
+}
+.band__in{ position:relative; max-width:var(--maxw); margin-inline:auto; }
+.band .tag{ color:var(--accent); }
+.band h2{ max-width:18ch; margin:1rem 0 0; }
+.band__stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:clamp(2.5rem,5vw,4rem); background:color-mix(in oklch,var(--on-dark) 12%, transparent); border-radius:var(--r-lg); overflow:hidden; }
+@media (max-width:760px){ .band__stats{ grid-template-columns:repeat(2,1fr); } }
+.band__stats div{ background:var(--dark); padding:1.6rem 1.4rem; }
+.band__stats b{ display:block; font-size:clamp(2rem,1.4rem+2vw,2.9rem); font-weight:600; letter-spacing:-0.03em; }
+.band__stats b.amber{ color:var(--accent); }
+.band__stats .mono{ font-size:0.74rem; color:var(--on-dark-soft); text-transform:uppercase; letter-spacing:0.05em; }
+
+/* ============================================================
+   PRICING
+   ============================================================ */
+.tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; align-items:start; }
+@media (max-width:900px){ .tiers{ grid-template-columns:1fr; max-width:420px; margin-inline:auto; } }
+.tier{ border:1px solid var(--line); border-radius:var(--r-lg); padding:1.8rem 1.6rem; background:var(--bg); display:flex; flex-direction:column; }
+.tier--feat{ border-color:var(--primary); box-shadow:0 24px 50px -28px color-mix(in oklch,var(--primary) 55%, transparent); position:relative; }
+.tier--feat::after{ content:"most picked"; position:absolute; top:-0.7rem; right:1.4rem; font-family:var(--mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.05em; background:var(--primary); color:#fff; padding:0.25em 0.7em; border-radius:99px; }
+.tier__name{ font-family:var(--mono); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); }
+.tier__price{ margin:0.9rem 0 0; font-size:2.6rem; font-weight:600; letter-spacing:-0.03em; }
+.tier__price span{ font-size:0.95rem; font-weight:400; color:var(--muted); font-family:var(--mono); }
+.tier__desc{ color:var(--ink-soft); font-size:0.92rem; margin:0.4rem 0 1.3rem; min-height:2.6em; }
+.tier ul{ list-style:none; margin:0 0 1.6rem; padding:0; display:grid; gap:0.6rem; }
+.tier li{ display:flex; gap:0.6rem; align-items:flex-start; font-size:0.93rem; color:var(--ink-soft); }
+.tier li svg{ width:16px; height:16px; color:var(--primary); flex:none; margin-top:3px; }
+.tier .btn{ margin-top:auto; justify-content:center; width:100%; }
+
+/* ============================================================
+   QUOTE
+   ============================================================ */
+.quote{ max-width:46ch; margin-inline:auto; text-align:center; }
+.quote blockquote{ margin:0; font-size:clamp(1.5rem,1.1rem+1.6vw,2.2rem); font-weight:500; line-height:1.25; letter-spacing:-0.02em; text-wrap:balance; }
+.quote blockquote span{ color:var(--primary); }
+.quote figcaption{ margin-top:1.6rem; font-family:var(--mono); font-size:0.82rem; color:var(--ink-soft); }
+.quote figcaption b{ color:var(--ink); font-weight:600; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.cta{ text-align:center; }
+.cta h2{ max-width:20ch; margin-inline:auto; }
+.cta p{ color:var(--ink-soft); font-size:1.15rem; margin:1.1rem auto 2.2rem; max-width:40ch; }
+.cta__actions{ display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; }
+.cta .mono{ display:block; margin-top:1.5rem; font-size:0.76rem; color:var(--muted); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot{ border-top:1px solid var(--line); padding:clamp(3rem,5vw,4rem) 0 2.5rem; margin-top:clamp(3rem,6vw,5rem); }
+.foot__grid{ display:grid; grid-template-columns:1.6fr repeat(3,1fr); gap:2rem; }
+@media (max-width:760px){ .foot__grid{ grid-template-columns:1fr 1fr; } }
+.foot__brand p{ color:var(--ink-soft); max-width:30ch; font-size:0.92rem; margin:0.8rem 0 0; }
+.foot h5{ font-family:var(--mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin:0 0 1rem; font-weight:500; }
+.foot ul{ list-style:none; padding:0; margin:0; display:grid; gap:0.6rem; }
+.foot a{ color:var(--ink-soft); font-size:0.92rem; transition:color .2s; }
+.foot a:hover{ color:var(--primary); }
+.foot__base{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-top:clamp(2.5rem,4vw,3.5rem); padding-top:1.6rem; border-top:1px solid var(--line); font-family:var(--mono); font-size:0.74rem; color:var(--muted); }
+
+::selection{ background:color-mix(in oklch,var(--primary) 22%, transparent); }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#" aria-label="Beacon home">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="3.4" fill="currentColor"/>
+        <path d="M16 6.5a9.5 9.5 0 0 1 9.5 9.5M16 1a15 15 0 0 1 15 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M16 25.5A9.5 9.5 0 0 1 6.5 16M16 31A15 15 0 0 1 1 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+      Beacon
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#features">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#docs">Docs</a>
+    </nav>
+    <div class="nav__cta">
+      <a href="#" class="btn btn--ghost">Sign in</a>
+      <a href="#pricing" class="btn btn--primary">Start free
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <span class="crosshair" style="top:1.5rem;left:0.6rem"><svg viewBox="0 0 18 18"><path d="M9 0v18M0 9h18" stroke="currentColor"/></svg></span>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="tag reveal">Signal, not noise</span>
+      <h1 class="reveal">Anomaly detection that <em>explains itself</em>.</h1>
+      <p class="hero__lead reveal">Beacon watches every metric you ship, catches the moment something drifts, and tells you which change caused it, before your users notice.</p>
+      <div class="hero__actions reveal">
+        <a href="#pricing" class="btn btn--primary">Start free
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#how" class="link-arrow">See a live trace
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <dl class="hero__meta reveal">
+        <div><dt>Detection lag</dt><dd>&lt; <span>900</span> ms</dd></div>
+        <div><dt>Signals watched</dt><dd>4,200<span>+</span></dd></div>
+        <div><dt>False-page cut</dt><dd><span>71</span>%</dd></div>
+      </dl>
+    </div>
+
+    <!-- product mockup -->
+    <div class="device reveal" role="img" aria-label="Beacon dashboard showing a live latency signal with a detected anomaly flagged at 14:02 and a root-cause alert pointing to deploy a1f3c.">
+      <div class="device__bar">
+        <span class="dot" style="background:var(--accent-deep)"></span>
+        <span class="dot"></span><span class="dot"></span>
+        <span class="mono">checkout-api · prod</span>
+      </div>
+      <div class="device__body">
+        <div class="panel-row"><h4>p95 latency</h4><span class="mono">last 60 min</span></div>
+        <svg class="chart" viewBox="0 0 320 118" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="bgrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="var(--primary)" stop-opacity="0.18"/>
+              <stop offset="1" stop-color="var(--primary)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line class="axis" x1="0" y1="100" x2="320" y2="100"/>
+          <path class="area" d="M0,84 L26,80 52,86 78,72 104,78 130,70 156,74 182,66 208,72 234,40 260,30 286,46 312,38 L320,38 L320,100 L0,100 Z"/>
+          <path class="line" d="M0,84 L26,80 52,86 78,72 104,78 130,70 156,74 182,66 208,72 234,40 260,30 286,46 312,38"/>
+          <line class="flag" x1="222" y1="8" x2="222" y2="100"/>
+          <circle class="pulse" cx="260" cy="30" r="3.5"/>
+        </svg>
+        <div class="readout">
+          <div><span class="mono">current</span><b class="warn">418ms</b></div>
+          <div><span class="mono">baseline</span><b>196ms</b></div>
+          <div><span class="mono">deviation</span><b class="up">+113%</b></div>
+        </div>
+        <div class="alert">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2 18 17H2L10 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="14.5" r="0.6" fill="currentColor"/></svg>
+          <p><b>Root cause found.</b> Spike at 14:02 correlates with deploy <span class="mono">a1f3c</span>, which added a synchronous tax lookup. 3 services affected.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUST ===================== -->
+<section class="trust">
+  <div class="wrap">
+    <p>Watching production at</p>
+    <div class="trust__row">
+      <span>Northwind</span><span>Cargold</span><span>Plenari</span><span>Holl022</span><span>Tessera</span><span>Vanta&nbsp;Loop</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="tag">What Beacon does</span>
+      <h2 class="reveal">Most monitoring tells you something broke. Beacon tells you what to do about it.</h2>
+      <p class="reveal">Three jobs, handled end to end: notice the drift, find the cause, hand you the fix.</p>
+    </div>
+
+    <div class="feature reveal">
+      <div class="feature__copy">
+        <span class="num">/ detection</span>
+        <h3>Catches drift before thresholds do</h3>
+        <p>Static alerts fire when a number crosses a line you guessed months ago. Beacon learns each signal's normal rhythm, including its daily and weekly shape, and flags the moment behaviour breaks pattern.</p>
+        <ul>
+          <li>Per-signal seasonal baselines, no manual thresholds</li>
+          <li>Sub-second detection on streaming metrics</li>
+          <li>Severity scored by blast radius, not raw size</li>
+        </ul>
+      </div>
+      <div class="feature__art">
+        <svg class="diagram" viewBox="0 0 420 240" role="img" aria-label="A metric line tracking its learned baseline band, then breaking out of the band where Beacon marks an anomaly.">
+          <rect x="0" y="0" width="420" height="240" fill="none"/>
+          <path d="M20,150 C70,140 90,150 120,138 C150,126 170,150 200,140 C230,130 250,148 280,140" fill="none" stroke="var(--line)" stroke-width="20" stroke-linecap="round" opacity="0.7"/>
+          <path d="M20,150 C70,140 90,150 120,138 C150,126 170,148 200,140 C230,130 250,148 280,150 C300,151 312,120 326,86 C338,58 352,60 372,54" fill="none" stroke="var(--primary)" stroke-width="3"/>
+          <circle cx="326" cy="86" r="6" fill="var(--accent)"/>
+          <circle cx="326" cy="86" r="12" fill="none" stroke="var(--accent-deep)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="338" y="78" font-family="Spline Sans Mono, monospace" font-size="12" fill="var(--accent-deep)">anomaly</text>
+          <text x="22" y="176" font-family="Spline Sans Mono, monospace" font-size="11" fill="var(--muted)">learned band</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="feature__copy">
+        <span class="num">/ correlation</span>
+        <h3>Connects the spike to the change</h3>
+        <p>Every anomaly is cross-referenced against deploys, feature flags, config edits and infra events on the same timeline. You get the likely cause ranked by correlation, not a wall of dashboards to read yourself.</p>
+        <ul>
+          <li>Deploy, flag and config events on one timeline</li>
+          <li>Ranked root-cause candidates with evidence</li>
+          <li>One-click rollback of the implicated change</li>
+        </ul>
+      </div>
+      <div class="feature__art">
+        <svg class="diagram" viewBox="0 0 420 240" role="img" aria-label="Several event tracks, deploys, flags and config, aligning at a single marked point in time that explains the anomaly.">
+          <g font-family="Spline Sans Mono, monospace" font-size="11" fill="var(--muted)">
+            <text x="20" y="56">deploys</text><text x="20" y="116">flags</text><text x="20" y="176">config</text>
+          </g>
+          <g stroke="var(--line)" stroke-width="1.5"><line x1="110" y1="52" x2="400" y2="52"/><line x1="110" y1="112" x2="400" y2="112"/><line x1="110" y1="172" x2="400" y2="172"/></g>
+          <line x1="300" y1="32" x2="300" y2="200" stroke="var(--accent-deep)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <g fill="var(--ink-soft)"><circle cx="160" cy="52" r="4"/><circle cx="230" cy="112" r="4"/><circle cx="200" cy="172" r="4"/></g>
+          <circle cx="300" cy="52" r="7" fill="var(--primary)"/>
+          <rect x="262" y="206" width="76" height="20" rx="4" fill="var(--primary)"/>
+          <text x="300" y="220" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="11" fill="#fff">deploy a1f3c</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="feature__copy">
+        <span class="num">/ delivery</span>
+        <h3>Reaches the one person who can fix it</h3>
+        <p>Beacon knows who owns the implicated service and routes the alert straight to them, with the trace, the diff and the suggested action attached. No triage channel, no 2am page for the wrong team.</p>
+        <ul>
+          <li>Ownership routing from your service catalog</li>
+          <li>Full context in Slack, PagerDuty or email</li>
+          <li>Auto-resolves and learns when the signal recovers</li>
+        </ul>
+      </div>
+      <div class="feature__art">
+        <svg class="diagram" viewBox="0 0 420 240" role="img" aria-label="A single alert routed from Beacon directly to the owning engineer, skipping a crowded triage channel.">
+          <circle cx="80" cy="120" r="22" fill="var(--primary)"/>
+          <text x="80" y="124" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="13" fill="#fff" font-weight="600">B</text>
+          <path d="M104,120 H300" stroke="var(--primary)" stroke-width="2.5" marker-end="url(#arr)"/>
+          <path d="M104,120 C160,120 180,64 250,64" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+          <path d="M104,120 C160,120 180,176 250,176" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+          <g fill="var(--muted)" font-family="Spline Sans Mono, monospace" font-size="11">
+            <text x="258" y="68">#triage</text><text x="258" y="180">#general</text>
+          </g>
+          <rect x="300" y="100" width="104" height="40" rx="8" fill="var(--bg)" stroke="var(--primary)" stroke-width="1.5"/>
+          <text x="352" y="118" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="12" fill="var(--ink)" font-weight="600">@dana</text>
+          <text x="352" y="132" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="9.5" fill="var(--muted)">owns checkout-api</text>
+          <defs><marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M1,1 L7,4.5 L1,8" fill="none" stroke="var(--primary)" stroke-width="1.6"/></marker></defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="tag">From zero to watched</span>
+      <h2 class="reveal">Connected in an afternoon, useful by the next deploy.</h2>
+    </div>
+    <div class="steps reveal" data-stagger>
+      <div class="step" style="--i:0">
+        <h3>Point it at your metrics</h3>
+        <p>Drop in the agent or send us your existing Prometheus, OpenTelemetry or Datadog stream. Beacon starts learning baselines immediately, no config files to write.</p>
+      </div>
+      <div class="step" style="--i:1">
+        <h3>Link your change feed</h3>
+        <p>Connect GitHub, your CI and your flag tool so every deploy and toggle lands on the same timeline as your signals. Two clicks each.</p>
+      </div>
+      <div class="step" style="--i:2">
+        <h3>Get explained alerts</h3>
+        <p>From the next anomaly on, you receive the signal, the cause and the owner together. Tune nothing; Beacon sharpens as it learns your system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== DARK BAND ===================== -->
+<section class="band">
+  <div class="band__in">
+    <span class="tag">Measured in production</span>
+    <h2 class="reveal">Teams stop staring at dashboards and start shipping again.</h2>
+    <div class="band__stats reveal" data-stagger>
+      <div style="--i:0"><b class="amber">11&times;</b><span class="mono">faster root cause</span></div>
+      <div style="--i:1"><b>71%</b><span class="mono">fewer false pages</span></div>
+      <div style="--i:2"><b>4.2k</b><span class="mono">signals per team</span></div>
+      <div style="--i:3"><b>&lt;900ms</b><span class="mono">median detection</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="tag">Pricing</span>
+      <h2 class="reveal">Priced per signal, not per seat. Invite the whole team.</h2>
+      <p class="reveal">Start free on a single service. Scale when Beacon has earned it.</p>
+    </div>
+    <div class="tiers reveal" data-stagger>
+      <div class="tier" style="--i:0">
+        <span class="tier__name">Solo</span>
+        <p class="tier__price">$0<span> /mo</span></p>
+        <p class="tier__desc">One service, full detection. For side projects and trials.</p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>1 service, 50 signals</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>7-day signal history</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Slack &amp; email alerts</li>
+        </ul>
+        <a href="#" class="btn btn--ghost">Start free</a>
+      </div>
+      <div class="tier tier--feat" style="--i:1">
+        <span class="tier__name">Team</span>
+        <p class="tier__price">$240<span> /mo</span></p>
+        <p class="tier__desc">Full correlation and routing for a growing product team.</p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited services, 5k signals</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Deploy &amp; flag correlation</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Ownership routing + PagerDuty</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>90-day history</li>
+        </ul>
+        <a href="#" class="btn btn--primary">Start 14-day trial</a>
+      </div>
+      <div class="tier" style="--i:2">
+        <span class="tier__name">Scale</span>
+        <p class="tier__price">Talk<span> to us</span></p>
+        <p class="tier__desc">Volume signals, SSO and the controls security teams ask for.</p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom signal volume</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>SSO, audit log, SOC 2</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated solutions engineer</li>
+        </ul>
+        <a href="#" class="btn btn--ghost">Book a call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUOTE ===================== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <figure class="quote reveal">
+      <blockquote>"We deleted three dashboards and a whole alert channel. Beacon just <span>tells us the one thing that's wrong</span> and who's on it."</blockquote>
+      <figcaption><b>Dana Okonkwo</b> · Staff Engineer, Plenari</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="section cta">
+  <div class="wrap">
+    <h2 class="reveal">Stop reading dashboards. Start getting answers.</h2>
+    <p class="reveal">Connect one service free and see your first explained anomaly today.</p>
+    <div class="cta__actions reveal">
+      <a href="#" class="btn btn--primary">Start free
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#" class="btn btn--ghost">Read the docs</a>
+    </div>
+    <span class="mono">No credit card · 5-minute setup · cancel anytime</span>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <a class="brand" href="#" aria-label="Beacon home">
+          <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="3.4" fill="currentColor"/>
+            <path d="M16 6.5a9.5 9.5 0 0 1 9.5 9.5M16 1a15 15 0 0 1 15 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>Beacon
+        </a>
+        <p>Anomaly detection that explains itself, for teams who'd rather ship than stare at graphs.</p>
+      </div>
+      <div><h5>Product</h5><ul><li><a href="#features">Detection</a></li><li><a href="#features">Correlation</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#docs">Changelog</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Security</a></li><li><a href="#">Status</a></li></ul></div>
+      <div><h5>Resources</h5><ul><li><a href="#docs">Docs</a></li><li><a href="#">API</a></li><li><a href="#">Guides</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="foot__base">
+      <span>© 2026 Beacon Systems · 37.7749 N, 122.4194 W</span>
+      <span>Built on a template by murzi.studio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* nav border on scroll */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+
+/* reveal-on-scroll — enhances content that is already visible by default */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reveals = document.querySelectorAll('.reveal');
+if (reduce || !('IntersectionObserver' in window)) {
+  reveals.forEach(el => el.classList.add('in'));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin:'0px 0px -8% 0px', threshold:0.08 });
+  reveals.forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>
