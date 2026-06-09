@@ -55,7 +55,13 @@ CATALOG = {
                   "blurb": "A podcast site with a player-style hero, an episode list and animated waveforms."},
     "atlas":     {"title": "Atlas · analytics dashboard",      "price": 690, "file": "atlas.zip",
                   "blurb": "An analytics SaaS landing with a real app-shell product mockup, KPIs and pricing."},
-    "bundle":    {"title": "All ten templates · bundle",       "price": 2490, "file": "murzi-templates-bundle.zip",
+    "saffron":   {"title": "Saffron · restaurant",            "price": 690, "file": "saffron.zip",
+                  "blurb": "A warm-dark restaurant site with full-bleed photography, a short menu, a gallery and reservations."},
+    "lumen":     {"title": "Lumen · eCommerce product",       "price": 690, "file": "lumen.zip",
+                  "blurb": "A quiet-luxury single-product brand page: photo hero, ingredient grid, the ritual and reviews."},
+    "marin":     {"title": "The Marin · real estate",         "price": 690, "file": "marin.zip",
+                  "blurb": "An architectural property listing with a full-bleed home tour, a facts row, a gallery and a viewing CTA."},
+    "bundle":    {"title": "All thirteen templates · bundle",  "price": 2990, "file": "murzi-templates-bundle.zip",
                   "blurb": "Every template in the store, together, with every future template added free."},
 }
 

@@ -21,6 +21,12 @@ ITEMS = [
      "A podcast site with a player-style hero, an episode list, a listen-anywhere row and animated waveforms."),
     ("10-dashboard", "Atlas", "Analytics dashboard / SaaS",
      "An analytics SaaS landing with a real app-shell product mockup, KPIs, a growth chart and clean pricing."),
+    ("11-restaurant", "Saffron", "Restaurant / hospitality",
+     "A warm-dark restaurant site with full-bleed food and interior photography, a short menu, a gallery and reservations."),
+    ("12-ecommerce", "Lumen", "eCommerce / single product",
+     "A quiet-luxury single-product brand page: hero, ingredient grid, the ritual, reviews and a shop block."),
+    ("13-real-estate", "The Marin", "Real estate / property listing",
+     "An architectural property listing with a full-bleed home tour, a facts row, a gallery and a viewing CTA."),
 ]
 
 LICENSE = '''murzi/store — Single Commercial License
