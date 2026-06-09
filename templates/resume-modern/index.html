@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume — Modern (A4, print-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESUME — MODERN  ·  A4, print-ready, one HTML file
+   Open in a browser, edit the text, then File → Print → Save as
+   PDF (margins: None / Default, Background graphics: ON).
+   Rebrand: change --accent and --ink below.
+   ============================================================ */
+:root{
+  --paper:  #ffffff;
+  --side:   #f4f6f8;
+  --ink:    #1c2530;
+  --soft:   #4a5562;
+  --muted:  #7a8794;
+  --line:   #e2e7ec;
+  --accent: #2f5d62;        /* deep teal — change to rebrand */
+  --accent-soft: #e7eef0;
+}
+*{ box-sizing:border-box; margin:0; }
+html,body{ background:#e9ecef; }
+body{ font-family:"Hanken Grotesk", system-ui, sans-serif; color:var(--ink); font-size:10.2pt; line-height:1.5;
+  -webkit-font-smoothing:antialiased; padding:24px 0; }
+.page{ width:210mm; min-height:297mm; margin:0 auto; background:var(--paper); display:grid;
+  grid-template-columns:68mm 1fr; box-shadow:0 10px 40px -12px rgba(0,0,0,.25); overflow:hidden; }
+
+/* sidebar */
+.side{ background:var(--side); padding:16mm 11mm; }
+.avatar{ width:34mm; height:34mm; border-radius:50%; margin:0 auto 7mm; background:var(--accent); color:#fff;
+  display:grid; place-items:center; font-family:"Spectral",serif; font-size:34pt; font-weight:600; }
+.s-block{ margin-bottom:8mm; }
+.s-title{ font-weight:700; font-size:8.4pt; letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+  padding-bottom:1.5mm; margin-bottom:3mm; border-bottom:1.5px solid var(--accent); }
+.contact li{ list-style:none; display:flex; gap:2.5mm; align-items:flex-start; margin-bottom:2.2mm; font-size:9.4pt; color:var(--soft); word-break:break-word; }
+.contact svg{ width:3.6mm; height:3.6mm; color:var(--accent); flex:none; margin-top:.6mm; }
+.skill{ margin-bottom:2.8mm; }
+.skill .row{ display:flex; justify-content:space-between; font-size:9.4pt; margin-bottom:1.2mm; }
+.skill .row span{ color:var(--muted); }
+.bar{ height:2mm; border-radius:2mm; background:var(--accent-soft); overflow:hidden; }
+.bar i{ display:block; height:100%; background:var(--accent); border-radius:2mm; }
+.lang{ display:flex; justify-content:space-between; font-size:9.4pt; margin-bottom:1.8mm; }
+.lang span{ color:var(--muted); }
+.s-edu b{ display:block; font-size:9.8pt; }
+.s-edu p{ color:var(--soft); font-size:9pt; }
+.s-edu .y{ color:var(--muted); font-size:8.6pt; }
+.s-edu .item{ margin-bottom:4mm; }
+
+/* main */
+.main{ padding:16mm 14mm; }
+.name{ font-family:"Spectral",serif; font-weight:600; font-size:27pt; line-height:1.05; letter-spacing:-.01em; }
+.role{ color:var(--accent); font-weight:600; font-size:11.5pt; letter-spacing:.08em; text-transform:uppercase; margin-top:1.5mm; }
+.m-block{ margin-top:8mm; }
+.m-title{ font-weight:700; font-size:9pt; letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+  display:flex; align-items:center; gap:3mm; margin-bottom:3.5mm; }
+.m-title::after{ content:""; flex:1; height:1.5px; background:var(--line); }
+.summary{ color:var(--soft); }
+.exp{ position:relative; padding-left:6mm; padding-bottom:5.5mm; border-left:1.5px solid var(--line); }
+.exp:last-child{ padding-bottom:0; }
+.exp::before{ content:""; position:absolute; left:-1.4mm; top:1mm; width:2.6mm; height:2.6mm; border-radius:50%; background:var(--accent); }
+.exp__top{ display:flex; justify-content:space-between; align-items:baseline; gap:4mm; }
+.exp__role{ font-weight:700; font-size:11pt; }
+.exp__date{ color:var(--muted); font-size:8.8pt; white-space:nowrap; }
+.exp__co{ color:var(--accent); font-weight:600; font-size:9.6pt; margin:.4mm 0 2mm; }
+.exp ul{ margin:0; padding-left:4mm; }
+.exp li{ color:var(--soft); font-size:9.6pt; margin-bottom:1mm; }
+
+/* print */
+@page{ size:A4; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ box-shadow:none; width:210mm; min-height:297mm; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <div class="avatar">AM</div>
+
+    <div class="s-block">
+      <div class="s-title">Contact</div>
+      <ul class="contact">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>alex.morgan@email.com</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>+1 555 0142</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="2"/></svg>San Francisco, CA</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" stroke="currentColor" stroke-width="2"/></svg>alexmorgan.design</li>
+      </ul>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">Skills</div>
+      <div class="skill"><div class="row">Product design<span>Expert</span></div><div class="bar"><i style="width:95%"></i></div></div>
+      <div class="skill"><div class="row">Design systems<span>Expert</span></div><div class="bar"><i style="width:90%"></i></div></div>
+      <div class="skill"><div class="row">Prototyping<span>Advanced</span></div><div class="bar"><i style="width:82%"></i></div></div>
+      <div class="skill"><div class="row">User research<span>Advanced</span></div><div class="bar"><i style="width:78%"></i></div></div>
+      <div class="skill"><div class="row">Front-end (HTML/CSS)<span>Proficient</span></div><div class="bar"><i style="width:68%"></i></div></div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">Languages</div>
+      <div class="lang">English<span>Native</span></div>
+      <div class="lang">Spanish<span>Fluent</span></div>
+      <div class="lang">French<span>Conversational</span></div>
+    </div>
+
+    <div class="s-block s-edu">
+      <div class="s-title">Education</div>
+      <div class="item"><b>BFA, Interaction Design</b><p>Rhode Island School of Design</p><span class="y">2013 — 2017</span></div>
+      <div class="item"><b>Certificate, UX Research</b><p>Nielsen Norman Group</p><span class="y">2019</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div class="name">Alex Morgan</div>
+      <div class="role">Senior Product Designer</div>
+    </header>
+
+    <section class="m-block">
+      <div class="m-title">Profile</div>
+      <p class="summary">Product designer with eight years shaping calm, usable interfaces for early teams and one very large company. I work end to end, from research and flows to a shipped, polished UI, and I like the part where the details start to add up.</p>
+    </section>
+
+    <section class="m-block">
+      <div class="m-title">Experience</div>
+
+      <div class="exp">
+        <div class="exp__top"><span class="exp__role">Senior Product Designer</span><span class="exp__date">2022 — Present</span></div>
+        <div class="exp__co">Plenari · San Francisco</div>
+        <ul>
+          <li>Led the redesign of the core dashboard, lifting weekly active use by 31%.</li>
+          <li>Built and maintained the design system used by 14 engineers across 4 squads.</li>
+          <li>Ran a lightweight research practice that shipped 9 validated features in a year.</li>
+        </ul>
+      </div>
+
+      <div class="exp">
+        <div class="exp__top"><span class="exp__role">Product Designer</span><span class="exp__date">2019 — 2022</span></div>
+        <div class="exp__co">Northbeam · Remote</div>
+        <ul>
+          <li>Designed the onboarding flow that cut time-to-first-value from days to minutes.</li>
+          <li>Partnered with engineering to ship a component library in React and Figma.</li>
+        </ul>
+      </div>
+
+      <div class="exp">
+        <div class="exp__top"><span class="exp__role">Junior Designer</span><span class="exp__date">2017 — 2019</span></div>
+        <div class="exp__co">Vela Studio · New York</div>
+        <ul>
+          <li>Designed brand and web for a dozen early-stage clients across two years.</li>
+          <li>Owned the studio's component kit and weekly design critique.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

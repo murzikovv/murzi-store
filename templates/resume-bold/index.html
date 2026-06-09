@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume — Bold (A4, print-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESUME — BOLD  ·  A4, colour-header, print-ready
+   A confident, modern resume with a colour banner. Open in a
+   browser, edit the text, then File → Print → Save as PDF
+   (Background graphics: ON). Rebrand: change --accent below.
+   ============================================================ */
+:root{
+  --paper:  #ffffff;
+  --ink:    #181a20;
+  --soft:   #474c57;
+  --muted:  #828896;
+  --line:   #e4e6ea;
+  --accent: #4338ca;        /* indigo — change to rebrand */
+  --accent-2:#6d63e6;
+  --chip:   #eef0fb;
+}
+*{ box-sizing:border-box; margin:0; }
+html,body{ background:#e9ecef; }
+body{ font-family:"Hanken Grotesk", system-ui, sans-serif; color:var(--ink); font-size:10.2pt; line-height:1.5; padding:24px 0; -webkit-font-smoothing:antialiased; }
+.page{ width:210mm; min-height:297mm; margin:0 auto; background:var(--paper); box-shadow:0 10px 40px -12px rgba(0,0,0,.25); overflow:hidden; }
+
+.banner{ background:linear-gradient(120deg,var(--accent),var(--accent-2)); color:#fff; padding:15mm 16mm; display:flex; justify-content:space-between; align-items:flex-end; gap:8mm; }
+.banner .name{ font-weight:800; font-size:30pt; line-height:1; letter-spacing:-.02em; }
+.banner .role{ font-weight:600; font-size:12pt; letter-spacing:.04em; opacity:.92; margin-top:2mm; }
+.banner .contact{ text-align:right; font-size:9.2pt; line-height:1.8; opacity:.95; white-space:nowrap; }
+
+.body{ display:grid; grid-template-columns:1fr 62mm; gap:0; }
+.col-main{ padding:12mm 6mm 14mm 16mm; }
+.col-side{ padding:12mm 16mm 14mm 8mm; background:#fafbfd; }
+.h{ font-weight:800; font-size:9pt; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:3.5mm; }
+.block{ margin-bottom:8mm; }
+.block:last-child{ margin-bottom:0; }
+.summary{ color:var(--soft); }
+
+.job{ margin-bottom:5mm; }
+.job:last-child{ margin-bottom:0; }
+.job__role{ font-weight:700; font-size:11pt; }
+.job__co{ color:var(--accent); font-weight:600; font-size:9.6pt; }
+.job__date{ color:var(--muted); font-size:8.8pt; margin:.4mm 0 1.8mm; }
+.job ul{ margin:0; padding-left:4.5mm; }
+.job li{ color:var(--soft); font-size:9.6pt; margin-bottom:1mm; }
+
+.chips{ display:flex; flex-wrap:wrap; gap:1.6mm; }
+.chips span{ background:var(--chip); color:var(--accent); font-weight:600; font-size:8.8pt; padding:1.2mm 2.6mm; border-radius:2mm; }
+.edu b{ display:block; font-size:9.8pt; } .edu p{ color:var(--soft); font-size:9pt; } .edu .y{ color:var(--muted); font-size:8.6pt; } .edu .item{ margin-bottom:4mm; }
+.contact-side li{ list-style:none; font-size:9.2pt; color:var(--soft); margin-bottom:1.8mm; word-break:break-word; }
+.contact-side b{ display:block; font-size:7.8pt; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+@page{ size:A4; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="banner">
+    <div>
+      <div class="name">Sam Rivera</div>
+      <div class="role">Software Engineer</div>
+    </div>
+    <div class="contact">
+      sam.rivera@email.com<br>+1 555 0173<br>Austin, TX<br>github.com/samrivera
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="col-main">
+      <div class="block">
+        <div class="h">Profile</div>
+        <p class="summary">Full-stack engineer with seven years shipping reliable products at small teams. I like owning a feature end to end, keeping systems boring on purpose, and leaving code that the next person can read.</p>
+      </div>
+
+      <div class="block">
+        <div class="h">Experience</div>
+
+        <div class="job">
+          <div class="job__role">Senior Software Engineer</div>
+          <div class="job__co">Vela Loop · Austin</div>
+          <div class="job__date">2022 — Present</div>
+          <ul>
+            <li>Rebuilt the billing service, cutting failed payments by 19%.</li>
+            <li>Led the migration to a typed API, removing a class of runtime bugs.</li>
+            <li>Mentored three engineers and owned the on-call rotation.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__role">Software Engineer</div>
+          <div class="job__co">Cargold · Remote</div>
+          <div class="job__date">2019 — 2022</div>
+          <ul>
+            <li>Shipped the customer dashboard from first commit to 30k users.</li>
+            <li>Cut page-load time 40% with a render and caching overhaul.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__role">Junior Developer</div>
+          <div class="job__co">Plenari · Remote</div>
+          <div class="job__date">2017 — 2019</div>
+          <ul>
+            <li>Built internal tools and fixed bugs across a Rails and React stack.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-side">
+      <div class="block">
+        <div class="h">Skills</div>
+        <div class="chips">
+          <span>TypeScript</span><span>React</span><span>Node</span><span>Python</span><span>Go</span><span>PostgreSQL</span><span>AWS</span><span>Docker</span><span>CI/CD</span>
+        </div>
+      </div>
+
+      <div class="block edu">
+        <div class="h">Education</div>
+        <div class="item"><b>BS, Computer Science</b><p>UT Austin</p><span class="y">2013 — 2017</span></div>
+      </div>
+
+      <div class="block">
+        <div class="h">Links</div>
+        <ul class="contact-side">
+          <li><b>Portfolio</b>samrivera.dev</li>
+          <li><b>GitHub</b>github.com/samrivera</li>
+          <li><b>LinkedIn</b>in/samrivera</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

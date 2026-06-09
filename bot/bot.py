@@ -62,8 +62,14 @@ CATALOG = {
                   "blurb": "A quiet-luxury single-product brand page: photo hero, ingredient grid, the ritual and reviews."},
     "marin":     {"title": "The Marin · real estate",         "price": 690, "file": "marin.zip",
                   "blurb": "An architectural property listing with a full-bleed home tour, a facts row, a gallery and a viewing CTA."},
-    "bundle":    {"title": "All thirteen templates · bundle",  "price": 2990, "file": "murzi-templates-bundle.zip",
-                  "blurb": "Every template in the store, together, with every future template added free."},
+    "resume-modern":  {"title": "Resume — Modern · CV template",  "price": 390, "file": "resume-modern.zip",
+                       "blurb": "A two-column modern resume: sidebar with skill bars and a clean timeline. Print-ready A4."},
+    "resume-classic": {"title": "Resume — Classic · CV template", "price": 390, "file": "resume-classic.zip",
+                       "blurb": "A clean, single-column, ATS-friendly resume. Recruiter- and parser-safe. Print-ready A4."},
+    "resume-bold":    {"title": "Resume — Bold · CV template",    "price": 390, "file": "resume-bold.zip",
+                       "blurb": "A confident resume with a colour banner and two-column body. Stands out, reads clean. A4."},
+    "bundle":    {"title": "All thirteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
+                  "blurb": "Every website template in the store, together, with every future one added free."},
 }
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")

@@ -1,0 +1,12 @@
+murzi/store — Single Commercial License
+Template: "Resume — Modern" (Resume / CV)
+
+Copyright (c) 2026 murzi.studio. All rights reserved.
+
+You may use this template to create your OWN resume (or one client's),
+edit it freely and print/export it as a PDF for any job application.
+
+You may NOT resell, redistribute or include the template file itself in
+any pack or marketplace. The product is your finished resume, not the source.
+
+Fonts load from Google Fonts under their open licenses.

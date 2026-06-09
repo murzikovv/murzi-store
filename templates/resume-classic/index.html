@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume — Classic (A4, ATS-friendly, print-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESUME — CLASSIC  ·  A4, single column, ATS-friendly
+   Clean, traditional, recruiter-safe. Open in a browser, edit the
+   text, then File → Print → Save as PDF (margins: Default).
+   Rebrand: change --accent below.
+   ============================================================ */
+:root{
+  --paper:  #ffffff;
+  --ink:    #1a1a1a;
+  --soft:   #3d3d3d;
+  --muted:  #767676;
+  --line:   #d8d8d8;
+  --accent: #7a1f2b;        /* oxblood — change to rebrand */
+}
+*{ box-sizing:border-box; margin:0; }
+html,body{ background:#e9ecef; }
+body{ font-family:"Hanken Grotesk", system-ui, sans-serif; color:var(--ink); font-size:10.4pt; line-height:1.5; padding:24px 0; -webkit-font-smoothing:antialiased; }
+.page{ width:210mm; min-height:297mm; margin:0 auto; background:var(--paper); padding:18mm 20mm;
+  box-shadow:0 10px 40px -12px rgba(0,0,0,.25); }
+
+.head{ text-align:center; border-bottom:2px solid var(--ink); padding-bottom:6mm; margin-bottom:6mm; }
+.name{ font-family:"Source Serif 4",Georgia,serif; font-weight:700; font-size:26pt; letter-spacing:.01em; }
+.role{ font-size:11pt; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-top:1.5mm; font-weight:600; }
+.head .contact{ margin-top:3.5mm; font-size:9.4pt; color:var(--soft); }
+.head .contact span{ white-space:nowrap; }
+.head .contact i{ color:var(--muted); margin:0 2mm; font-style:normal; }
+
+.block{ margin-bottom:6mm; }
+.h{ font-family:"Source Serif 4",Georgia,serif; font-weight:700; font-size:11.5pt; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:1.5mm; margin-bottom:3.5mm; }
+.summary{ color:var(--soft); }
+
+.job{ margin-bottom:4.5mm; }
+.job:last-child{ margin-bottom:0; }
+.job__top{ display:flex; justify-content:space-between; align-items:baseline; gap:5mm; }
+.job__role{ font-weight:700; font-size:11pt; }
+.job__date{ color:var(--muted); font-size:9pt; white-space:nowrap; }
+.job__co{ font-style:italic; color:var(--soft); font-size:10pt; margin:.4mm 0 1.8mm; }
+.job ul{ margin:0; padding-left:5mm; }
+.job li{ color:var(--soft); margin-bottom:.8mm; }
+
+.two{ display:grid; grid-template-columns:1fr 1fr; gap:5mm 10mm; }
+.edu b{ font-weight:700; } .edu p{ color:var(--soft); font-style:italic; font-size:9.6pt; } .edu .y{ color:var(--muted); font-size:9pt; }
+.skills-list{ columns:2; column-gap:8mm; }
+.skills-list li{ list-style:none; position:relative; padding-left:4mm; margin-bottom:1.4mm; color:var(--soft); font-size:9.8pt; break-inside:avoid; }
+.skills-list li::before{ content:""; position:absolute; left:0; top:2.1mm; width:1.8mm; height:1.8mm; background:var(--accent); border-radius:50%; }
+
+@page{ size:A4; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div class="name">Jordan Avery</div>
+    <div class="role">Marketing Manager</div>
+    <div class="contact">
+      <span>jordan.avery@email.com</span><i>·</i><span>+1 555 0188</span><i>·</i><span>Chicago, IL</span><i>·</i><span>linkedin.com/in/jordanavery</span>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="h">Summary</div>
+    <p class="summary">Marketing manager with nine years building demand for B2B software, from positioning and content to paid and lifecycle. I lead small teams, work close to sales, and care about pipeline I can trace to a line of revenue.</p>
+  </section>
+
+  <section class="block">
+    <div class="h">Experience</div>
+
+    <div class="job">
+      <div class="job__top"><span class="job__role">Marketing Manager</span><span class="job__date">2021 — Present</span></div>
+      <div class="job__co">Tessera Software, Chicago</div>
+      <ul>
+        <li>Grew marketing-sourced pipeline 2.4× in two years on a flat budget.</li>
+        <li>Built the content engine that now drives 40% of inbound demos.</li>
+        <li>Led a team of four across content, paid and lifecycle marketing.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__top"><span class="job__role">Demand Generation Lead</span><span class="job__date">2018 — 2021</span></div>
+      <div class="job__co">Northbeam, Remote</div>
+      <ul>
+        <li>Owned paid acquisition across search and social, cutting CAC by 28%.</li>
+        <li>Launched the webinar program that became the top-converting channel.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job__top"><span class="job__role">Marketing Associate</span><span class="job__date">2016 — 2018</span></div>
+      <div class="job__co">Plenari, New York</div>
+      <ul>
+        <li>Ran the editorial calendar and email program from zero to 25k subscribers.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="h">Education</div>
+    <div class="two edu">
+      <div><b>BA, Marketing &amp; Communications</b><p>University of Michigan</p><span class="y">2012 — 2016</span></div>
+      <div><b>HubSpot Inbound Certification</b><p>HubSpot Academy</p><span class="y">2019</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="h">Skills</div>
+    <ul class="skills-list">
+      <li>Demand generation</li><li>Content strategy</li><li>Paid search &amp; social</li><li>Lifecycle &amp; email</li>
+      <li>Marketing analytics</li><li>SEO</li><li>HubSpot &amp; Salesforce</li><li>Team leadership</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
