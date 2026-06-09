@@ -31,6 +31,7 @@ cfg = json.loads((BASE / "config.json").read_text(encoding="utf-8"))
 TOKEN = cfg["bot_token"]
 STORE_URL = cfg.get("store_url", "")
 SUPPORT = cfg.get("support_contact", "")
+ADMIN = cfg.get("admin_id")  # Telegram chat id that receives activity notifications
 
 # --- catalog -------------------------------------------------------------
 # price is in Telegram Stars (whole units). file is relative to /dist.
@@ -69,6 +70,21 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("murzi-store")
 
 dp = Dispatcher()
+
+
+def who(u) -> str:
+    un = f"@{u.username}" if u.username else "no username"
+    return f"{u.full_name} ({un}, id <code>{u.id}</code>)"
+
+
+async def notify_admin(bot, text: str) -> None:
+    """Send an activity notification to the admin chat, if configured."""
+    if not ADMIN:
+        return
+    try:
+        await bot.send_message(ADMIN, text)
+    except Exception as e:  # never let admin notify break the user flow
+        log.warning("admin notify failed: %s", e)
 
 
 def catalog_keyboard() -> InlineKeyboardBuilder:
@@ -119,12 +135,16 @@ async def start_plain(message: Message) -> None:
         "The file is delivered here instantly after payment."
     )
     await message.answer(text, reply_markup=catalog_keyboard().as_markup())
+    await notify_admin(message.bot, f"👀 Opened the store\n{who(message.from_user)}")
 
 
 @dp.callback_query(F.data.startswith("buy:"))
 async def on_buy(call: CallbackQuery) -> None:
     await call.answer()
-    await send_invoice(call.message, call.data.split(":", 1)[1])
+    key = call.data.split(":", 1)[1]
+    await send_invoice(call.message, key)
+    p = CATALOG.get(key, {})
+    await notify_admin(call.bot, f"🛒 Tapped buy: <b>{p.get('title', key)}</b> (★{p.get('price','?')})\n{who(call.from_user)}")
 
 
 @dp.pre_checkout_query()
@@ -140,6 +160,11 @@ async def on_paid(message: Message) -> None:
     key = sp.invoice_payload
     p = CATALOG.get(key)
     log.info("PAID %s by %s charge=%s", key, message.from_user.id, sp.telegram_payment_charge_id)
+    await notify_admin(
+        message.bot,
+        f"💰 <b>SALE</b> ★{(p or {}).get('price','?')} — {(p or {}).get('title', key)}\n"
+        f"by {who(message.from_user)}\ncharge <code>{sp.telegram_payment_charge_id}</code>"
+    )
     if not p:
         await message.answer("Payment received, but I couldn't match the item. "
                              f"Contact {SUPPORT} and we'll sort it out.")
