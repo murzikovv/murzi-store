@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atlas — the analytics workspace your whole team can read</title>
+<meta name="description" content="Atlas turns your product data into dashboards anyone can read, with metrics you define once and trust everywhere." />
+<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ATLAS — analytics / dashboard SaaS landing template
+   Aesthetic: clean light product, indigo accent, a real app-shell
+   product mockup (sidebar + charts + table). Calm, data-confident.
+   Fonts: Onest (display+body) + Spline Sans Mono (figures).
+   ============================================================ */
+:root{
+  --bg:        oklch(0.985 0.003 280);
+  --bg-2:      oklch(0.965 0.005 280);
+  --ink:       oklch(0.24 0.02 280);
+  --soft:      oklch(0.46 0.02 280);
+  --muted:     oklch(0.6 0.02 280);
+  --line:      oklch(0.9 0.008 280);
+  --indigo:    oklch(0.52 0.2 282);
+  --indigo-2:  oklch(0.62 0.17 285);
+  --green:     oklch(0.68 0.15 155);
+  --amber:     oklch(0.78 0.13 70);
+  --display: "Onest", system-ui, sans-serif;
+  --mono: "Spline Sans Mono", ui-monospace, monospace;
+  --maxw: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--display); font-weight:400;
+  font-size:clamp(1rem,0.96rem+0.2vw,1.07rem); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ font-weight:700; line-height:1.05; letter-spacing:-0.03em; margin:0; text-wrap:balance; }
+h1{ font-size:clamp(2.6rem,1.7rem+3.8vw,4.6rem); letter-spacing:-0.04em; }
+h2{ font-size:clamp(2rem,1.4rem+2.4vw,3.1rem); }
+h3{ font-size:clamp(1.2rem,1.05rem+0.7vw,1.5rem); }
+p{ text-wrap:pretty; }
+.tag{ display:inline-flex; align-items:center; gap:0.5em; font-family:var(--mono); font-size:0.74rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--indigo); font-weight:500; }
+.tag::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--indigo); box-shadow:0 0 0 4px color-mix(in oklch,var(--indigo) 18%, transparent); }
+
+.btn{ display:inline-flex; align-items:center; gap:0.55em; font-weight:600; font-size:0.98rem; padding:0.8em 1.4em; border-radius:11px;
+  background:var(--indigo); color:#fff; border:1px solid var(--indigo); cursor:pointer;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease); }
+.btn:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -12px color-mix(in oklch,var(--indigo) 55%,transparent); }
+.btn--ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn--ghost:hover{ background:var(--bg-2); box-shadow:none; }
+.btn svg{ width:1em; height:1em; }
+
+.js .rv{ opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .js .rv{ opacity:1!important; transform:none!important; } }
+
+/* nav */
+.nav{ position:sticky; top:0; z-index:40; backdrop-filter:blur(10px); background:color-mix(in oklch,var(--bg) 82%,transparent); border-bottom:1px solid transparent; transition:border-color .3s; }
+.nav.scrolled{ border-bottom-color:var(--line); }
+.nav__in{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+.brand{ display:flex; align-items:center; gap:0.55em; font-weight:700; font-size:1.3rem; letter-spacing:-0.02em; }
+.brand__mark{ width:28px; height:28px; border-radius:8px; background:var(--indigo); display:grid; place-items:center; color:#fff; }
+.brand__mark svg{ width:16px; height:16px; }
+.nav__links{ display:flex; gap:1.8rem; align-items:center; }
+.nav__links a{ color:var(--soft); font-weight:500; font-size:0.95rem; transition:color .2s; }
+.nav__links a:hover{ color:var(--ink); }
+.nav__r{ display:flex; gap:0.8rem; align-items:center; }
+@media (max-width:880px){ .nav__links{ display:none; } .nav__r .btn--ghost{ display:none; } }
+
+/* hero */
+.hero{ padding:clamp(2.5rem,5vw,4.5rem) 0 clamp(2rem,4vw,3rem); text-align:center; }
+.hero h1{ max-width:18ch; margin:1.3rem auto 0; }
+.hero h1 .u{ color:var(--indigo); }
+.hero__lead{ margin:1.5rem auto 0; font-size:clamp(1.1rem,1rem+0.5vw,1.3rem); color:var(--soft); max-width:48ch; }
+.hero__cta{ display:flex; gap:0.9rem; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+
+/* app shell mockup */
+.app{ margin-top:clamp(2.5rem,5vw,4rem); border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#fff;
+  box-shadow:0 50px 100px -40px oklch(0.52 0.2 282 / 0.35), 0 20px 40px -30px oklch(0 0 0 / 0.3); text-align:left; }
+.app__bar{ display:flex; align-items:center; gap:0.5rem; padding:0.7rem 1rem; border-bottom:1px solid var(--line); background:var(--bg-2); }
+.app__bar .dot{ width:10px; height:10px; border-radius:50%; background:var(--line); }
+.app__bar .url{ margin-left:1rem; font-family:var(--mono); font-size:0.74rem; color:var(--muted); }
+.app__body{ display:grid; grid-template-columns:200px 1fr; min-height:380px; }
+@media (max-width:720px){ .app__body{ grid-template-columns:1fr; } .app__side{ display:none; } }
+.app__side{ border-right:1px solid var(--line); padding:1.1rem 0.8rem; background:var(--bg-2); }
+.app__side .grp{ font-family:var(--mono); font-size:0.64rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin:0.8rem 0.6rem 0.4rem; }
+.app__side a{ display:flex; align-items:center; gap:0.6rem; padding:0.5rem 0.6rem; border-radius:8px; font-size:0.84rem; color:var(--soft); margin-bottom:2px; }
+.app__side a.on{ background:#fff; color:var(--indigo); font-weight:600; box-shadow:0 1px 2px oklch(0 0 0 / 0.05); }
+.app__side a i{ width:14px; height:14px; border-radius:4px; background:currentColor; opacity:0.5; }
+.app__main{ padding:1.3rem 1.4rem; }
+.app__head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1.1rem; }
+.app__head h4{ margin:0; font-size:1.1rem; font-weight:700; }
+.app__head .chip{ font-family:var(--mono); font-size:0.7rem; color:var(--green); background:color-mix(in oklch,var(--green) 14%,#fff); border:1px solid color-mix(in oklch,var(--green) 30%,var(--line)); padding:0.3em 0.7em; border-radius:99px; }
+.kpis{ display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem; margin-bottom:1rem; }
+.kpi{ border:1px solid var(--line); border-radius:11px; padding:0.8rem 0.9rem; }
+.kpi span{ font-family:var(--mono); font-size:0.66rem; color:var(--muted); text-transform:uppercase; }
+.kpi b{ display:block; font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin-top:0.1rem; }
+.kpi em{ font-style:normal; font-size:0.72rem; font-family:var(--mono); }
+.kpi em.up{ color:var(--green); } .kpi em.dn{ color:var(--amber); }
+.chart{ border:1px solid var(--line); border-radius:11px; padding:1rem; }
+.chart svg{ width:100%; height:130px; display:block; }
+.chart .area{ fill:url(#ag); } .chart .l{ fill:none; stroke:var(--indigo); stroke-width:2.5; stroke-linecap:round; }
+.chart .l2{ fill:none; stroke:var(--indigo-2); stroke-width:2; stroke-dasharray:4 4; opacity:0.7; }
+.js .chart .l{ stroke-dasharray:640; stroke-dashoffset:640; animation:dr 2s var(--ease) .3s forwards; }
+@keyframes dr{ to{ stroke-dashoffset:0; } }
+@media (prefers-reduced-motion: reduce){ .js .chart .l{ animation:none; stroke-dashoffset:0; } }
+
+/* logos */
+.logos{ padding:1.5rem 0 2.5rem; }
+.logos p{ text-align:center; font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin:0 0 1.3rem; }
+.logos__row{ display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(1.5rem,5vw,3.5rem); }
+.logos__row span{ font-weight:700; font-size:1.15rem; color:var(--soft); opacity:0.85; }
+
+/* features */
+.section{ padding:clamp(4rem,7vw,7rem) 0; }
+.shead{ max-width:54ch; margin-bottom:clamp(2.5rem,5vw,4rem); }
+.shead h2{ margin:1rem 0 0; }
+.shead p{ margin:1rem 0 0; color:var(--soft); font-size:1.15rem; }
+.grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.3rem; }
+@media (max-width:820px){ .grid3{ grid-template-columns:1fr; max-width:480px; } }
+.feat{ padding:1.7rem; border-radius:16px; background:#fff; border:1px solid var(--line); }
+.feat__ic{ width:44px; height:44px; border-radius:11px; display:grid; place-items:center; background:color-mix(in oklch,var(--indigo) 12%,#fff); color:var(--indigo); margin-bottom:1rem; }
+.feat__ic svg{ width:22px; height:22px; }
+.feat h3{ margin-bottom:0.5rem; }
+.feat p{ color:var(--soft); font-size:0.95rem; }
+
+/* band */
+.band{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border-radius:18px; overflow:hidden; border:1px solid var(--line); }
+@media (max-width:760px){ .band{ grid-template-columns:1fr 1fr; } }
+.band div{ background:#fff; padding:2rem 1.4rem; }
+.band b{ font-size:clamp(2rem,1.5rem+1.6vw,2.8rem); font-weight:700; letter-spacing:-0.03em; display:block; }
+.band b.i{ color:var(--indigo); }
+.band span{ font-family:var(--mono); font-size:0.74rem; color:var(--muted); text-transform:uppercase; }
+
+/* pricing */
+.tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; align-items:start; }
+@media (max-width:900px){ .tiers{ grid-template-columns:1fr; max-width:420px; margin-inline:auto; } }
+.tier{ border:1px solid var(--line); border-radius:16px; padding:1.8rem 1.6rem; background:#fff; display:flex; flex-direction:column; }
+.tier--feat{ border-color:var(--indigo); box-shadow:0 24px 50px -28px color-mix(in oklch,var(--indigo) 50%,transparent); }
+.tier__name{ font-family:var(--mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--soft); }
+.tier__price{ font-size:2.6rem; font-weight:700; letter-spacing:-0.03em; margin:0.8rem 0 0; }
+.tier__price span{ font-size:0.9rem; font-weight:400; color:var(--muted); font-family:var(--mono); }
+.tier ul{ list-style:none; padding:0; margin:1.2rem 0 1.6rem; display:grid; gap:0.6rem; }
+.tier li{ display:flex; gap:0.6rem; font-size:0.93rem; color:var(--soft); }
+.tier li svg{ width:16px; height:16px; color:var(--indigo); flex:none; margin-top:3px; }
+.tier .btn{ margin-top:auto; justify-content:center; }
+
+/* cta */
+.cta{ text-align:center; }
+.cta__card{ background:linear-gradient(150deg, oklch(0.52 0.2 282), oklch(0.45 0.19 288)); color:#fff; border-radius:24px; padding:clamp(3rem,6vw,5rem) clamp(1.5rem,4vw,3rem); }
+.cta__card .tag{ color:#fff; justify-content:center; } .cta__card .tag::before{ background:#fff; box-shadow:0 0 0 4px oklch(1 0 0 / 0.2); }
+.cta__card h2{ max-width:20ch; margin:1rem auto 0; }
+.cta__card p{ margin:1.1rem auto 2rem; max-width:40ch; color:oklch(1 0 0 / 0.85); font-size:1.1rem; }
+.cta__card .btn{ background:#fff; color:var(--indigo); border-color:#fff; }
+
+/* footer */
+.foot{ border-top:1px solid var(--line); padding:clamp(2.5rem,4vw,3.5rem) 0; margin-top:clamp(2rem,4vw,3rem); }
+.foot__in{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:0.88rem; color:var(--muted); }
+.foot__in a:hover{ color:var(--indigo); }
+::selection{ background:var(--indigo); color:#fff; }
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#"><span class="brand__mark"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V9M12 19V5M19 19v-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>Atlas</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#features">Product</a><a href="#pricing">Pricing</a><a href="#">Customers</a><a href="#">Docs</a>
+    </nav>
+    <div class="nav__r"><a href="#" class="btn btn--ghost">Sign in</a><a href="#pricing" class="btn">Start free</a></div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <span class="tag rv">Analytics for the whole team</span>
+    <h1 class="rv">The analytics workspace your <span class="u">whole team</span> can read.</h1>
+    <p class="hero__lead rv">Atlas turns your product data into dashboards anyone can read, with metrics you define once and trust everywhere. No SQL required, no more arguing about the numbers.</p>
+    <div class="hero__cta rv">
+      <a href="#pricing" class="btn">Start free
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#features" class="btn btn--ghost">Book a demo</a>
+    </div>
+
+    <div class="app rv" role="img" aria-label="Atlas dashboard showing revenue KPIs, a growth chart and a sidebar of saved metrics.">
+      <div class="app__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.atlas.io / dashboards / growth</span></div>
+      <div class="app__body">
+        <aside class="app__side">
+          <p class="grp">Workspace</p>
+          <a class="on"><i></i>Overview</a><a><i></i>Growth</a><a><i></i>Revenue</a><a><i></i>Retention</a>
+          <p class="grp">Saved metrics</p>
+          <a><i></i>Activation</a><a><i></i>MRR</a><a><i></i>Churn</a>
+        </aside>
+        <div class="app__main">
+          <div class="app__head"><h4>Growth overview</h4><span class="chip">▲ on track</span></div>
+          <div class="kpis">
+            <div class="kpi"><span>MRR</span><b>$128.4k</b><em class="up">+12.4%</em></div>
+            <div class="kpi"><span>Active teams</span><b>3,910</b><em class="up">+6.1%</em></div>
+            <div class="kpi"><span>Churn</span><b>1.8%</b><em class="dn">+0.2pt</em></div>
+          </div>
+          <div class="chart">
+            <svg viewBox="0 0 320 130" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="ag" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--indigo)" stop-opacity="0.18"/><stop offset="1" stop-color="var(--indigo)" stop-opacity="0"/></linearGradient></defs>
+              <path class="area" d="M0,100 L26,96 52,98 78,84 104,88 130,74 156,80 182,64 208,70 234,50 260,56 286,38 312,30 L320,30 L320,130 L0,130 Z"/>
+              <path class="l2" d="M0,110 L320,70"/>
+              <path class="l" d="M0,100 L26,96 52,98 78,84 104,88 130,74 156,80 182,64 208,70 234,50 260,56 286,38 312,30"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="logos">
+  <div class="wrap">
+    <p>The data team behind</p>
+    <div class="logos__row"><span>Northbeam</span><span>Cargold</span><span>Plenari</span><span>Tessera</span><span>Vela Loop</span></div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="shead">
+      <span class="tag">Why Atlas</span>
+      <h2 class="rv">Define a metric once. Trust it everywhere.</h2>
+      <p class="rv">No more six versions of "active user". Your team works from one set of numbers, in dashboards they can actually read.</p>
+    </div>
+    <div class="grid3">
+      <div class="feat rv">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Dashboards anyone reads</h3>
+        <p>Drag-built dashboards with plain-language metrics, no SQL and no data-team queue.</p>
+      </div>
+      <div class="feat rv">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>One metrics layer</h3>
+        <p>Define each metric once in a shared layer, so every chart and export agrees.</p>
+      </div>
+      <div class="feat rv">
+        <div class="feat__ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Alerts that matter</h3>
+        <p>Get a nudge when a metric breaks its trend, in Slack, before someone asks in a meeting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="band rv">
+      <div><b class="i">2 min</b><span>to first dashboard</span></div>
+      <div><b>40+</b><span>data sources</span></div>
+      <div><b class="i">1</b><span>metrics layer</span></div>
+      <div><b>3,900</b><span>teams on Atlas</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="shead">
+      <span class="tag">Pricing</span>
+      <h2 class="rv">Start free. Grow when your data does.</h2>
+    </div>
+    <div class="tiers">
+      <div class="tier rv">
+        <span class="tier__name">Free</span>
+        <p class="tier__price">$0<span> /mo</span></p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>3 dashboards</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>2 data sources</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Up to 3 seats</li>
+        </ul>
+        <a href="#" class="btn btn--ghost">Start free</a>
+      </div>
+      <div class="tier tier--feat rv">
+        <span class="tier__name">Team</span>
+        <p class="tier__price">$320<span> /mo</span></p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited dashboards</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Shared metrics layer</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Slack alerts</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>15 seats included</li>
+        </ul>
+        <a href="#" class="btn">Start 14-day trial</a>
+      </div>
+      <div class="tier rv">
+        <span class="tier__name">Scale</span>
+        <p class="tier__price">Talk<span> to us</span></p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>SSO and audit log</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited seats</li>
+          <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated support</li>
+        </ul>
+        <a href="#" class="btn btn--ghost">Contact sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta">
+  <div class="wrap">
+    <div class="cta__card rv">
+      <span class="tag">Free to start</span>
+      <h2>Stop arguing about the numbers.</h2>
+      <p>Connect a source and build your first dashboard in two minutes. No card required.</p>
+      <a href="#" class="btn">Start free</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>© 2026 Atlas Analytics</span>
+    <span><a href="https://murzi.studio">Template by murzi.studio</a></span>
+    <span>SOC 2 · GDPR ready</span>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',scrollY>8);
+onScroll(); addEventListener('scroll',onScroll,{passive:true});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rv=document.querySelectorAll('.rv');
+if(reduce||!('IntersectionObserver'in window)){ rv.forEach(e=>e.classList.add('in')); }
+else{ const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:0.05}); rv.forEach(e=>io.observe(e)); }
+</script>
+</body>
+</html>

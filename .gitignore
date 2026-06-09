@@ -16,4 +16,7 @@ bot/__pycache__/
 .gemini/
 node_modules/
 
+# Marketing kit — kept local, not part of the published storefront
+marketing/
+
 # Safe to publish: index.html + templates/  (storefront + live previews)

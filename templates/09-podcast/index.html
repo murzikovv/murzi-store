@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Frequency — honest conversations with people who make things</title>
+<meta name="description" content="A weekly podcast of long, honest conversations with designers, builders and founders. New episode every Tuesday." />
+<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FREQUENCY — podcast landing template
+   Aesthetic: warm-dark studio, electric coral, waveform motif,
+   episode list that feels like a player. Tactile, audio-first.
+   Fonts: Familjen Grotesk (display+body) + Spline Sans Mono.
+   ============================================================ */
+:root{
+  --bg:        oklch(0.19 0.012 40);
+  --bg-2:      oklch(0.23 0.014 40);
+  --surface:   oklch(0.26 0.016 40);
+  --ink:       oklch(0.97 0.008 60);
+  --soft:      oklch(0.78 0.02 50);
+  --muted:     oklch(0.62 0.02 50);
+  --line:      oklch(1 0 0 / 0.12);
+  --coral:     oklch(0.7 0.18 33);
+  --coral-deep:oklch(0.62 0.18 30);
+  --gold:      oklch(0.82 0.12 80);
+  --display: "Familjen Grotesk", system-ui, sans-serif;
+  --mono: "Spline Sans Mono", ui-monospace, monospace;
+  --maxw: 1120px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--display); font-weight:400;
+  font-size:clamp(1rem,0.96rem+0.2vw,1.07rem); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  background-image:radial-gradient(100% 60% at 80% -5%, oklch(0.3 0.06 35 / 0.5), transparent 55%); }
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ font-weight:700; line-height:1.02; letter-spacing:-0.03em; margin:0; text-wrap:balance; }
+h1{ font-size:clamp(2.8rem,1.7rem+4.6vw,5.4rem); letter-spacing:-0.04em; }
+h2{ font-size:clamp(2rem,1.4rem+2.4vw,3.2rem); }
+h3{ font-size:clamp(1.2rem,1.05rem+0.7vw,1.5rem); }
+p{ text-wrap:pretty; }
+.eyebrow{ font-family:var(--mono); font-size:0.74rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--coral); font-weight:500; }
+
+.btn{ display:inline-flex; align-items:center; gap:0.55em; font-weight:600; font-size:1rem; padding:0.82em 1.4em; border-radius:99px;
+  background:var(--coral); color:oklch(0.2 0.03 30); border:1px solid var(--coral); cursor:pointer;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease); }
+.btn:hover{ transform:translateY(-2px); box-shadow:0 12px 30px -10px color-mix(in oklch,var(--coral) 60%,transparent); }
+.btn--ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn--ghost:hover{ background:oklch(1 0 0 / 0.06); box-shadow:none; }
+.btn svg{ width:1.05em; height:1.05em; }
+
+.js .rv{ opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .js .rv{ opacity:1!important; transform:none!important; } }
+
+/* waveform */
+.wave{ display:flex; align-items:center; gap:3px; height:34px; }
+.wave i{ width:3px; border-radius:3px; background:var(--coral); opacity:0.85; }
+.wave--lg{ height:64px; gap:4px; }
+.wave--lg i{ width:4px; }
+.js .wave--live i{ animation:eq 1s ease-in-out infinite; }
+@keyframes eq{ 0%,100%{ transform:scaleY(0.5);} 50%{ transform:scaleY(1);} }
+@media (prefers-reduced-motion: reduce){ .js .wave--live i{ animation:none; } }
+
+/* nav */
+.nav{ position:sticky; top:0; z-index:40; backdrop-filter:blur(12px); background:color-mix(in oklch,var(--bg) 76%,transparent); border-bottom:1px solid transparent; transition:border-color .3s; }
+.nav.scrolled{ border-bottom-color:var(--line); }
+.nav__in{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+.brand{ display:flex; align-items:center; gap:0.6em; font-weight:700; font-size:1.3rem; letter-spacing:-0.02em; }
+.brand__mark{ width:30px; height:30px; border-radius:50%; background:var(--coral); display:grid; place-items:center; color:oklch(0.2 0.03 30); }
+.brand__mark svg{ width:15px; height:15px; }
+.nav__links{ display:flex; gap:1.8rem; align-items:center; }
+.nav__links a{ color:var(--soft); font-weight:500; font-size:0.95rem; transition:color .2s; }
+.nav__links a:hover{ color:var(--ink); }
+@media (max-width:780px){ .nav__links a:not(.btn){ display:none; } }
+
+/* hero */
+.hero{ padding:clamp(2.5rem,6vw,5rem) 0 clamp(2rem,4vw,3rem); }
+.hero__grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:clamp(2rem,4vw,3.5rem); align-items:center; }
+@media (max-width:880px){ .hero__grid{ grid-template-columns:1fr; gap:2.5rem; } }
+.hero h1{ margin:1.2rem 0 0; }
+.hero h1 em{ font-style:normal; color:var(--coral); }
+.hero__lead{ margin:1.5rem 0 0; font-size:clamp(1.1rem,1rem+0.5vw,1.3rem); color:var(--soft); max-width:40ch; }
+.hero__cta{ display:flex; gap:0.9rem; margin-top:2rem; flex-wrap:wrap; align-items:center; }
+.hero__on{ margin-top:2rem; font-family:var(--mono); font-size:0.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
+/* now playing card */
+.np{ border-radius:22px; background:linear-gradient(160deg,var(--bg-2),var(--bg)); border:1px solid var(--line); padding:1.5rem; box-shadow:0 40px 80px -34px oklch(0 0 0 / 0.6); }
+.np__cover{ aspect-ratio:1; border-radius:16px; background:radial-gradient(120% 120% at 30% 20%, var(--coral), var(--coral-deep) 55%, oklch(0.3 0.05 30)); display:grid; place-items:center; position:relative; overflow:hidden; }
+.np__cover .ep{ position:absolute; top:1rem; left:1rem; font-family:var(--mono); font-size:0.72rem; color:oklch(0.2 0.03 30 / 0.8); font-weight:600; }
+.np__cover .play{ width:64px; height:64px; border-radius:50%; background:oklch(0.2 0.03 30); color:var(--coral); display:grid; place-items:center; }
+.np__cover .play svg{ width:26px; height:26px; }
+.np__meta{ margin-top:1.2rem; }
+.np__meta .k{ font-family:var(--mono); font-size:0.72rem; color:var(--coral); text-transform:uppercase; letter-spacing:0.05em; }
+.np__meta h3{ margin:0.3rem 0 0.2rem; font-size:1.3rem; }
+.np__meta p{ color:var(--muted); font-size:0.86rem; }
+.np__bar{ display:flex; align-items:center; gap:0.8rem; margin-top:1.1rem; font-family:var(--mono); font-size:0.72rem; color:var(--muted); }
+.np__bar .wave{ flex:1; }
+
+/* listen on */
+.listen{ padding:1.5rem 0 2.5rem; }
+.listen p{ text-align:center; font-family:var(--mono); font-size:0.74rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin:0 0 1.3rem; }
+.listen__row{ display:flex; flex-wrap:wrap; justify-content:center; gap:0.8rem; }
+.listen__row a{ display:inline-flex; align-items:center; gap:0.5em; padding:0.6em 1.1em; border-radius:99px; border:1px solid var(--line); background:var(--surface); font-weight:600; font-size:0.9rem; color:var(--soft); transition:border-color .25s, color .25s; }
+.listen__row a:hover{ border-color:var(--coral); color:var(--ink); }
+
+/* episodes */
+.section{ padding:clamp(4rem,7vw,7rem) 0; }
+.shead{ display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; flex-wrap:wrap; margin-bottom:clamp(2rem,4vw,3rem); }
+.shead h2{ margin:0.6rem 0 0; }
+.eps{ display:grid; gap:0.8rem; }
+.ep-row{ display:grid; grid-template-columns:auto 1fr auto; gap:1.3rem; align-items:center; padding:1.1rem 1.3rem; border-radius:16px; background:var(--bg-2); border:1px solid var(--line); transition:transform .3s var(--ease), border-color .3s; }
+.ep-row:hover{ transform:translateY(-2px); border-color:color-mix(in oklch,var(--coral) 40%,var(--line)); }
+.ep-row__play{ width:48px; height:48px; border-radius:50%; background:var(--surface); color:var(--coral); display:grid; place-items:center; flex:none; transition:background .25s, color .25s; }
+.ep-row:hover .ep-row__play{ background:var(--coral); color:oklch(0.2 0.03 30); }
+.ep-row__play svg{ width:18px; height:18px; }
+.ep-row__c .n{ font-family:var(--mono); font-size:0.72rem; color:var(--muted); }
+.ep-row__c h3{ font-size:1.2rem; margin:0.15rem 0; }
+.ep-row__c p{ color:var(--muted); font-size:0.88rem; }
+.ep-row__meta{ text-align:right; font-family:var(--mono); font-size:0.76rem; color:var(--muted); white-space:nowrap; }
+.ep-row__meta .wave{ justify-content:flex-end; margin-top:0.5rem; }
+@media (max-width:680px){ .ep-row{ grid-template-columns:auto 1fr; } .ep-row__meta{ display:none; } }
+
+/* about hosts */
+.about{ background:var(--bg-2); }
+.about__in{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
+@media (max-width:820px){ .about__in{ grid-template-columns:1fr; } }
+.about__c blockquote{ font-weight:600; font-size:clamp(1.5rem,1.1rem+1.6vw,2.2rem); line-height:1.25; letter-spacing:-0.02em; margin:1rem 0 0; }
+.about__c blockquote span{ color:var(--coral); }
+.hosts{ display:flex; gap:1rem; margin-top:1.6rem; align-items:center; }
+.hosts img{ width:54px; height:54px; border-radius:50%; object-fit:cover; border:2px solid var(--surface); }
+.hosts img:nth-child(2){ margin-left:-1.4rem; }
+.hosts div{ margin-left:0.6rem; }
+.hosts b{ display:block; font-weight:700; }
+.hosts span{ color:var(--muted); font-size:0.86rem; }
+.about__stats{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border-radius:16px; overflow:hidden; }
+.about__stats div{ background:var(--bg); padding:1.6rem 1.4rem; }
+.about__stats b{ font-size:2.2rem; font-weight:700; display:block; letter-spacing:-0.03em; }
+.about__stats b.c{ color:var(--coral); }
+.about__stats span{ font-family:var(--mono); font-size:0.72rem; color:var(--muted); text-transform:uppercase; }
+
+/* cta */
+.cta{ text-align:center; }
+.cta h2{ max-width:18ch; margin:1rem auto 0; }
+.cta p{ color:var(--soft); font-size:1.15rem; margin:1.1rem auto 2rem; max-width:38ch; }
+
+/* footer */
+.foot{ border-top:1px solid var(--line); padding:clamp(2.5rem,4vw,3.5rem) 0; margin-top:clamp(2rem,4vw,3rem); }
+.foot__in{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:0.88rem; color:var(--muted); }
+.foot__in a:hover{ color:var(--coral); }
+::selection{ background:var(--coral); color:oklch(0.2 0.03 30); }
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#"><span class="brand__mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>Frequency</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#episodes">Episodes</a><a href="#about">About</a><a href="#listen">Listen</a>
+      <a href="#listen" class="btn">Subscribe</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="eyebrow rv">New episode every Tuesday</span>
+      <h1 class="rv">Honest talks with people who <em>make things</em>.</h1>
+      <p class="hero__lead rv">Long, unhurried conversations with designers, builders and founders about the real work behind the work. No hype, no highlight reel.</p>
+      <div class="hero__cta rv">
+        <a href="#episodes" class="btn">Play latest
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3v10l8-5z"/></svg></a>
+        <a href="#listen" class="btn btn--ghost">Where to listen</a>
+      </div>
+      <p class="hero__on rv">82 episodes · 1.4M listens · 4.9★</p>
+    </div>
+
+    <div class="np rv" role="img" aria-label="Now playing: episode 82, Designing with less, with guest Dana Okonkwo.">
+      <div class="np__cover">
+        <span class="ep">EP 82</span>
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      </div>
+      <div class="np__meta">
+        <span class="k">Latest episode</span>
+        <h3>Designing with less</h3>
+        <p>with Dana Okonkwo · principal designer</p>
+      </div>
+      <div class="np__bar">
+        <span>12:04</span>
+        <div class="wave wave--live" aria-hidden="true">
+          <i style="height:30%"></i><i style="height:70%"></i><i style="height:45%"></i><i style="height:90%"></i><i style="height:60%"></i><i style="height:80%"></i><i style="height:40%"></i><i style="height:65%"></i><i style="height:95%"></i><i style="height:50%"></i><i style="height:75%"></i><i style="height:35%"></i><i style="height:85%"></i><i style="height:55%"></i>
+        </div>
+        <span>58:20</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="listen" id="listen">
+  <div class="wrap">
+    <p>Listen wherever you already are</p>
+    <div class="listen__row">
+      <a href="#">Apple Podcasts</a><a href="#">Spotify</a><a href="#">YouTube</a><a href="#">Overcast</a><a href="#">RSS</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="episodes">
+  <div class="wrap">
+    <div class="shead"><div><span class="eyebrow">The archive</span><h2>Recent episodes</h2></div><a href="#" class="btn btn--ghost">All 82 episodes</a></div>
+    <div class="eps">
+      <a class="ep-row rv" href="#">
+        <span class="ep-row__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <div class="ep-row__c"><span class="n">Ep 82 · Mar 4</span><h3>Designing with less</h3><p>Dana Okonkwo on subtraction as a craft.</p></div>
+        <div class="ep-row__meta">58 min<div class="wave" aria-hidden="true"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:45%"></i></div></div>
+      </a>
+      <a class="ep-row rv" href="#">
+        <span class="ep-row__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <div class="ep-row__c"><span class="n">Ep 81 · Feb 25</span><h3>The first ten thousand users</h3><p>Theo Lindqvist on growing without ads.</p></div>
+        <div class="ep-row__meta">1h 04<div class="wave" aria-hidden="true"><i style="height:60%"></i><i style="height:35%"></i><i style="height:80%"></i><i style="height:50%"></i><i style="height:75%"></i></div></div>
+      </a>
+      <a class="ep-row rv" href="#">
+        <span class="ep-row__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <div class="ep-row__c"><span class="n">Ep 80 · Feb 18</span><h3>Drawing letters for a living</h3><p>Riya Sharma on type design and patience.</p></div>
+        <div class="ep-row__meta">49 min<div class="wave" aria-hidden="true"><i style="height:50%"></i><i style="height:85%"></i><i style="height:40%"></i><i style="height:65%"></i><i style="height:55%"></i></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="wrap about__in">
+    <div class="about__c rv">
+      <span class="eyebrow">About the show</span>
+      <blockquote>We ask the questions you'd ask if you <span>had two hours</span> and nothing to sell.</blockquote>
+      <div class="hosts">
+        <img src="https://picsum.photos/seed/freq-host1/120/120" alt="Host one"><img src="https://picsum.photos/seed/freq-host2/120/120" alt="Host two">
+        <div><b>Sam &amp; Lena</b><span>Hosts, every Tuesday since 2024</span></div>
+      </div>
+    </div>
+    <div class="about__stats rv">
+      <div><b class="c">82</b><span>episodes</span></div>
+      <div><b>1.4M</b><span>total listens</span></div>
+      <div><b class="c">4.9★</b><span>across stores</span></div>
+      <div><b>62m</b><span>average length</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block">Never miss one</span>
+    <h2 class="rv">A new conversation in your ears every Tuesday.</h2>
+    <p class="rv">Subscribe wherever you listen, or get each episode in your inbox with the show notes.</p>
+    <div class="rv" style="display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap">
+      <a href="#listen" class="btn">Subscribe free</a>
+      <a href="#" class="btn btn--ghost">Get the newsletter</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>© 2026 Frequency Podcast</span>
+    <span><a href="https://murzi.studio">Template by murzi.studio</a></span>
+    <span>hello@frequency.fm</span>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',scrollY>8);
+onScroll(); addEventListener('scroll',onScroll,{passive:true});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rv=document.querySelectorAll('.rv');
+if(reduce||!('IntersectionObserver'in window)){ rv.forEach(e=>e.classList.add('in')); }
+else{ const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:0.05}); rv.forEach(e=>io.observe(e)); }
+</script>
+</body>
+</html>

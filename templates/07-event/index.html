@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pulse 2026 — the conference for people who build the web</title>
+<meta name="description" content="Two days, one stage, the people shaping design and engineering. Pulse 2026, Lisbon, October 8–9." />
+<script>document.documentElement.className = document.documentElement.className.replace('no-js','js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PULSE 2026 — conference / event landing template
+   Aesthetic: high-energy poster. Off-white, ink black, electric
+   magenta + cyan, oversized condensed display type.
+   Fonts: Anton (display) + Albert Sans (body). No deps.
+   ============================================================ */
+:root{
+  --bg:        oklch(0.985 0 0);
+  --ink:       oklch(0.15 0 0);
+  --soft:      oklch(0.4 0 0);
+  --muted:     oklch(0.55 0 0);
+  --line:      oklch(0.86 0 0);
+  --pink:      oklch(0.62 0.25 5);
+  --cyan:      oklch(0.75 0.14 215);
+  --display: "Anton", system-ui, sans-serif;
+  --body: "Albert Sans", system-ui, sans-serif;
+  --maxw: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); font-weight:400;
+  font-size:clamp(1rem,0.96rem+0.2vw,1.08rem); line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ font-family:var(--display); font-weight:400; line-height:0.92; letter-spacing:0.005em; margin:0; text-transform:uppercase; text-wrap:balance; }
+h1{ font-size:clamp(3.4rem,1.6rem+8.5vw,9.5rem); }
+h2{ font-size:clamp(2.4rem,1.4rem+4vw,5rem); }
+h3{ font-size:clamp(1.4rem,1.15rem+1.1vw,2rem); }
+p{ text-wrap:pretty; }
+.label{ font-family:var(--body); font-weight:700; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--pink); }
+
+.btn{ display:inline-flex; align-items:center; gap:0.6em; font-family:var(--body); font-weight:700; font-size:1rem;
+  padding:0.9em 1.6em; border-radius:99px; background:var(--pink); color:#fff; border:2px solid var(--pink);
+  cursor:pointer; transition:transform .3s var(--ease), box-shadow .3s var(--ease), background .2s, color .2s; }
+.btn:hover{ transform:translateY(-2px); box-shadow:0 12px 30px -10px color-mix(in oklch,var(--pink) 60%,transparent); }
+.btn--ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn--ghost:hover{ background:var(--ink); color:var(--bg); box-shadow:none; }
+.btn svg{ width:1em; height:1em; }
+
+.js .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .js .rv{ opacity:1!important; transform:none!important; } }
+
+/* nav */
+.nav{ position:sticky; top:0; z-index:40; background:color-mix(in oklch,var(--bg) 88%,transparent); backdrop-filter:blur(8px); border-bottom:1px solid transparent; transition:border-color .3s; }
+.nav.scrolled{ border-bottom-color:var(--line); }
+.nav__in{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+.brand{ font-family:var(--display); font-size:1.6rem; letter-spacing:0.02em; text-transform:uppercase; }
+.brand b{ color:var(--pink); }
+.nav__links{ display:flex; gap:1.8rem; align-items:center; }
+.nav__links a{ font-weight:600; font-size:0.95rem; color:var(--soft); transition:color .2s; }
+.nav__links a:hover{ color:var(--pink); }
+@media (max-width:780px){ .nav__links a:not(.btn){ display:none; } }
+
+/* hero */
+.hero{ padding:clamp(2.5rem,5vw,4.5rem) 0 clamp(2.5rem,5vw,4rem); position:relative; }
+.hero__meta{ display:flex; flex-wrap:wrap; gap:0.8rem 2rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; font-size:0.92rem; }
+.hero__meta span{ display:inline-flex; align-items:center; gap:0.5em; }
+.hero__meta i{ width:8px; height:8px; border-radius:50%; background:var(--cyan); font-style:normal; }
+.hero h1{ margin:1.2rem 0 0; }
+.hero h1 .pink{ color:var(--pink); }
+.hero h1 .out{ -webkit-text-stroke:2px var(--ink); color:transparent; }
+.hero__bottom{ display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:end; margin-top:clamp(1.5rem,3vw,2.5rem); }
+@media (max-width:680px){ .hero__bottom{ grid-template-columns:1fr; } }
+.hero__bottom p{ font-size:clamp(1.1rem,1rem+0.5vw,1.35rem); max-width:42ch; color:var(--soft); }
+
+/* marquee */
+.strip{ background:var(--ink); color:var(--bg); overflow:hidden; padding:0.7rem 0; }
+.strip__row{ display:flex; gap:2.5rem; white-space:nowrap; font-family:var(--display); text-transform:uppercase; font-size:1.5rem; letter-spacing:0.02em; animation:slide 22s linear infinite; }
+.strip__row span{ display:inline-flex; gap:2.5rem; }
+.strip__row span::after{ content:"✺"; color:var(--pink); }
+@keyframes slide{ to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .strip__row{ animation:none; } }
+
+/* speakers */
+.section{ padding:clamp(4rem,7vw,7rem) 0; }
+.shead{ display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; flex-wrap:wrap; margin-bottom:clamp(2rem,4vw,3rem); }
+.spk{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+@media (max-width:880px){ .spk{ grid-template-columns:repeat(2,1fr); } }
+.spk__c{ }
+.spk__img{ aspect-ratio:1; border-radius:18px; overflow:hidden; background:var(--line); position:relative; }
+.spk__img img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1); transition:filter .5s var(--ease), transform .8s var(--ease); }
+.spk__c:hover .spk__img img{ filter:grayscale(0); transform:scale(1.05); }
+.spk__img span{ position:absolute; top:0.7rem; left:0.7rem; font-family:var(--body); font-weight:700; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.04em; background:var(--pink); color:#fff; padding:0.25em 0.6em; border-radius:99px; }
+.spk__c h3{ font-size:1.3rem; margin:0.9rem 0 0.1rem; }
+.spk__c p{ color:var(--muted); font-size:0.88rem; }
+
+/* schedule */
+.sched{ border-top:2px solid var(--ink); }
+.srow{ display:grid; grid-template-columns:auto 1fr auto; gap:clamp(1rem,3vw,2.5rem); align-items:center; padding:clamp(1.2rem,2.5vw,1.8rem) 0; border-bottom:1px solid var(--line); transition:background .3s; }
+.srow:hover{ background:color-mix(in oklch,var(--pink) 5%, transparent); }
+.srow__time{ font-family:var(--display); font-size:1.3rem; color:var(--pink); }
+.srow h3{ font-size:1.3rem; }
+.srow p{ color:var(--muted); font-size:0.9rem; margin-top:0.15rem; }
+.srow__tag{ font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--soft); white-space:nowrap; }
+@media (max-width:680px){ .srow{ grid-template-columns:auto 1fr; } .srow__tag{ display:none; } }
+
+/* tickets */
+.tix{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; align-items:stretch; }
+@media (max-width:880px){ .tix{ grid-template-columns:1fr; max-width:440px; margin-inline:auto; } }
+.tk{ border:2px solid var(--ink); border-radius:18px; padding:1.8rem 1.6rem; display:flex; flex-direction:column; background:var(--bg); }
+.tk--feat{ background:var(--ink); color:var(--bg); position:relative; }
+.tk--feat .tk__price{ color:var(--bg); } .tk--feat .tk__name{ color:var(--cyan); }
+.tk--feat::after{ content:"best value"; position:absolute; top:-0.7rem; right:1.4rem; font-family:var(--body); font-weight:700; font-size:0.68rem; text-transform:uppercase; background:var(--pink); color:#fff; padding:0.25em 0.7em; border-radius:99px; }
+.tk__name{ font-weight:700; text-transform:uppercase; letter-spacing:0.06em; font-size:0.85rem; color:var(--pink); }
+.tk__price{ font-family:var(--display); font-size:3rem; margin:0.8rem 0 0; line-height:1; }
+.tk__price small{ font-family:var(--body); font-size:0.9rem; font-weight:500; color:var(--muted); }
+.tk ul{ list-style:none; padding:0; margin:1.3rem 0; display:grid; gap:0.6rem; font-size:0.93rem; }
+.tk li{ padding-left:1.4rem; position:relative; }
+.tk li::before{ content:"→"; position:absolute; left:0; color:var(--pink); }
+.tk--feat li::before{ color:var(--cyan); }
+.tk .btn{ margin-top:auto; justify-content:center; }
+.tk--feat .btn--ghost{ color:var(--bg); border-color:var(--bg); }
+.tk--feat .btn--ghost:hover{ background:var(--bg); color:var(--ink); }
+
+/* cta */
+.cta{ background:var(--pink); color:#fff; }
+.cta .wrap{ padding-block:clamp(3.5rem,7vw,6rem); text-align:center; }
+.cta .label{ color:#fff; }
+.cta h2{ margin:1rem auto 0; max-width:18ch; }
+.cta p{ font-size:1.15rem; margin:1.1rem auto 2rem; max-width:38ch; color:color-mix(in oklch,#fff 85%, transparent); }
+.cta .btn{ background:#fff; color:var(--pink); border-color:#fff; }
+
+/* footer */
+.foot{ padding:2.5rem 0; }
+.foot__in{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:0.86rem; color:var(--muted); }
+.foot__in a:hover{ color:var(--pink); }
+::selection{ background:var(--pink); color:#fff; }
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#">PULSE<b>'26</b></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#tickets">Tickets</a>
+      <a href="#tickets" class="btn">Get tickets</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__meta rv">
+      <span><i></i>Lisbon, Portugal</span><span><i></i>October 8–9, 2026</span><span><i></i>32 speakers · 1 stage</span>
+    </div>
+    <h1 class="rv">The <span class="pink">conference</span><br>for people who<br><span class="out">build</span> the web.</h1>
+    <div class="hero__bottom rv">
+      <p>Two days with the designers, engineers and founders shaping how the internet looks and works. No fluff, no sales decks, just the people doing the work.</p>
+      <a href="#tickets" class="btn">Get your ticket
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true">
+  <div class="strip__row">
+    <span>Design</span><span>Engineering</span><span>AI</span><span>Product</span><span>Type</span><span>Motion</span>
+    <span>Design</span><span>Engineering</span><span>AI</span><span>Product</span><span>Type</span><span>Motion</span>
+  </div>
+</div>
+
+<section class="section" id="speakers">
+  <div class="wrap">
+    <div class="shead"><div><span class="label">The lineup</span><h2 style="margin-top:0.6rem">Speakers</h2></div><span class="srow__tag">+ 24 more announced soon</span></div>
+    <div class="spk">
+      <div class="spk__c rv"><div class="spk__img"><img src="https://picsum.photos/seed/pulse-a/500/500?grayscale" alt="Dana Okonkwo"><span>Keynote</span></div><h3>Dana Okonkwo</h3><p>Principal designer, Plenari</p></div>
+      <div class="spk__c rv"><div class="spk__img"><img src="https://picsum.photos/seed/pulse-b/500/500?grayscale" alt="Marco Vidal"></div><h3>Marco Vidal</h3><p>Staff engineer, Vela</p></div>
+      <div class="spk__c rv"><div class="spk__img"><img src="https://picsum.photos/seed/pulse-c/500/500?grayscale" alt="Riya Sharma"></div><h3>Riya Sharma</h3><p>Type designer, independent</p></div>
+      <div class="spk__c rv"><div class="spk__img"><img src="https://picsum.photos/seed/pulse-d/500/500?grayscale" alt="Theo Lindqvist"><span>Closing</span></div><h3>Theo Lindqvist</h3><p>Founder, Northbeam</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="schedule" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead"><div><span class="label">Day one</span><h2 style="margin-top:0.6rem">Schedule</h2></div><span class="srow__tag">Oct 8 · all times WEST</span></div>
+    <div class="sched">
+      <div class="srow rv"><span class="srow__time">09:30</span><div><h3>Designing for the post-template web</h3><p>Dana Okonkwo · keynote</p></div><span class="srow__tag">Main stage</span></div>
+      <div class="srow rv"><span class="srow__time">11:00</span><div><h3>Shipping interfaces that feel instant</h3><p>Marco Vidal</p></div><span class="srow__tag">Talk</span></div>
+      <div class="srow rv"><span class="srow__time">13:30</span><div><h3>Drawing letters in 2026</h3><p>Riya Sharma · workshop</p></div><span class="srow__tag">Workshop</span></div>
+      <div class="srow rv"><span class="srow__time">16:00</span><div><h3>Building a company on taste</h3><p>Theo Lindqvist · closing</p></div><span class="srow__tag">Main stage</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tickets" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead"><div><span class="label">Be in the room</span><h2 style="margin-top:0.6rem">Tickets</h2></div><span class="srow__tag">Early bird ends Aug 1</span></div>
+    <div class="tix">
+      <div class="tk rv">
+        <span class="tk__name">Stream</span>
+        <p class="tk__price">€0</p>
+        <ul><li>Live stream of the main stage</li><li>Talks on demand after</li><li>Community Discord</li></ul>
+        <a href="#" class="btn btn--ghost">Watch free</a>
+      </div>
+      <div class="tk tk--feat rv">
+        <span class="tk__name">In person</span>
+        <p class="tk__price">€290 <small>early bird</small></p>
+        <ul><li>Both days, all talks</li><li>Workshops and lunch</li><li>The after party</li><li>Speaker Q&amp;A sessions</li></ul>
+        <a href="#" class="btn">Get a ticket</a>
+      </div>
+      <div class="tk rv">
+        <span class="tk__name">Team</span>
+        <p class="tk__price">€240 <small>per seat</small></p>
+        <ul><li>Everything in In person</li><li>5+ seats, one invoice</li><li>Reserved seating block</li></ul>
+        <a href="#" class="btn btn--ghost">Buy for the team</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="label">Doors open October 8</span>
+    <h2 class="rv">Don't watch the clips later.</h2>
+    <p class="rv">Early-bird tickets are limited and they go fast. Grab yours before August 1.</p>
+    <a href="#tickets" class="btn rv">Get your ticket</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>© 2026 Pulse Conference · Lisbon</span>
+    <span><a href="https://murzi.studio">Template by murzi.studio</a></span>
+    <span>Instagram · X · YouTube</span>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',scrollY>8);
+onScroll(); addEventListener('scroll',onScroll,{passive:true});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rv=document.querySelectorAll('.rv');
+if(reduce||!('IntersectionObserver'in window)){ rv.forEach(e=>e.classList.add('in')); }
+else{ const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:0.05}); rv.forEach(e=>io.observe(e)); }
+</script>
+</body>
+</html>

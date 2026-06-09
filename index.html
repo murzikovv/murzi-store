@@ -115,7 +115,8 @@ p{ text-wrap:pretty; }
   display:flex; flex-direction:column; transition:transform .4s var(--ease), border-color .3s, box-shadow .4s var(--ease); }
 .card:hover{ transform:translateY(-4px); border-color:color-mix(in oklch,var(--accent) 40%,var(--line)); box-shadow:0 24px 50px -28px oklch(0 0 0 / 0.7); }
 .preview{ position:relative; height:230px; overflow:hidden; border-bottom:1px solid var(--line); background:var(--bg); }
-.preview iframe{ width:1280px; height:800px; border:0; transform:scale(0.42); transform-origin:top left; pointer-events:none; }
+.preview img{ width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:transform .6s var(--ease); }
+.card:hover .preview img{ transform:scale(1.04); }
 .preview a.cover{ position:absolute; inset:0; z-index:2; }
 .preview .badge{ position:absolute; z-index:3; top:0.7rem; left:0.7rem; font-family:var(--mono); font-size:0.7rem; letter-spacing:0.04em; text-transform:uppercase;
   padding:0.3em 0.7em; border-radius:6px; background:color-mix(in oklch,var(--bg) 70%,transparent); backdrop-filter:blur(6px); border:1px solid var(--line); color:var(--soft); }
@@ -177,7 +178,7 @@ p{ text-wrap:pretty; }
       <h1 class="rv">Templates that don't<br>look <em>off-the-shelf</em>.</h1>
       <p class="rv">One clean HTML file each. No build step, no framework, no 40-dependency install. Edit the text, swap the colors, ship in an afternoon. Each one commits to a real design, not the same handful of layouts you've seen a hundred times.</p>
       <dl class="hero__meta rv">
-        <div><dt>In the store</dt><dd>3 templates</dd></div>
+        <div><dt>In the store</dt><dd>10 templates</dd></div>
         <div><dt>Stack</dt><dd>HTML + CSS</dd></div>
         <div><dt>Dependencies</dt><dd>Zero</dd></div>
         <div><dt>Checkout</dt><dd><span class="star">★</span> Stars</dd></div>
@@ -224,59 +225,152 @@ p{ text-wrap:pretty; }
 <section class="products" id="store">
   <div class="wrap">
     <div class="grid">
-      <!-- 01 -->
       <article class="card rv">
-        <div class="preview">
-          <span class="badge">AI / SaaS landing</span>
+        <div class="preview"><span class="badge">AI / SaaS landing</span>
           <a class="cover" href="templates/01-ai-saas-landing/index.html" target="_blank" rel="noopener" aria-label="Preview Beacon template"></a>
-          <iframe src="templates/01-ai-saas-landing/index.html" title="Beacon preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-        </div>
+          <img src="previews/beacon.png" alt="Beacon AI SaaS landing template preview" loading="lazy" /></div>
         <div class="card__body">
           <div class="card__top"><h3>Beacon</h3><span class="card__price"><span class="star">★</span> 690</span></div>
           <p class="card__type">// landing · product</p>
-          <p class="card__desc">A precision SaaS landing with a live signal dashboard, blueprint grid, and a built-in dark band. For AI, dev tools, and startups.</p>
+          <p class="card__desc">A precision SaaS landing with a live signal dashboard, blueprint grid and a built-in dark band. For AI, dev tools and startups.</p>
           <div class="card__actions">
-            <a class="btn" href="templates/01-ai-saas-landing/index.html" target="_blank" rel="noopener">Preview
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn" href="templates/01-ai-saas-landing/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <a class="btn btn--accent" href="#" data-buy="beacon">Get <span class="star">★</span></a>
           </div>
         </div>
       </article>
 
-      <!-- 02 -->
       <article class="card rv">
-        <div class="preview">
-          <span class="badge">Portfolio</span>
+        <div class="preview"><span class="badge">Portfolio</span>
           <a class="cover" href="templates/02-portfolio/index.html" target="_blank" rel="noopener" aria-label="Preview Mara Vance template"></a>
-          <iframe src="templates/02-portfolio/index.html" title="Portfolio preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-        </div>
+          <img src="previews/portfolio.png" alt="Mara Vance freelancer portfolio template preview" loading="lazy" /></div>
         <div class="card__body">
           <div class="card__top"><h3>Mara Vance</h3><span class="card__price"><span class="star">★</span> 690</span></div>
           <p class="card__type">// portfolio · personal</p>
-          <p class="card__desc">A poster-grade portfolio: oversized type, a running marquee, and a monochrome work index that comes alive on hover. For any solo creative.</p>
+          <p class="card__desc">A poster-grade portfolio: oversized type, a running marquee and a monochrome work index that comes alive on hover. For any solo creative.</p>
           <div class="card__actions">
-            <a class="btn" href="templates/02-portfolio/index.html" target="_blank" rel="noopener">Preview
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn" href="templates/02-portfolio/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <a class="btn btn--accent" href="#" data-buy="portfolio">Get <span class="star">★</span></a>
           </div>
         </div>
       </article>
 
-      <!-- 03 -->
       <article class="card rv">
-        <div class="preview">
-          <span class="badge">Link in bio</span>
+        <div class="preview"><span class="badge">Link in bio</span>
           <a class="cover" href="templates/03-link-in-bio/index.html" target="_blank" rel="noopener" aria-label="Preview NOVA template"></a>
-          <iframe src="templates/03-link-in-bio/index.html" title="Link in bio preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-        </div>
+          <img src="previews/nova.png" alt="NOVA link in bio template preview" loading="lazy" /></div>
         <div class="card__body">
           <div class="card__top"><h3>NOVA</h3><span class="card__price"><span class="star">★</span> 690</span></div>
           <p class="card__type">// link-in-bio · creator</p>
-          <p class="card__desc">A drenched creator card with an aurora background, a featured release block, and tappable link rows. Mobile-first, looks great on desktop too.</p>
+          <p class="card__desc">A drenched creator card with an aurora background, a featured release block and tappable link rows. Mobile-first, great on desktop too.</p>
           <div class="card__actions">
-            <a class="btn" href="templates/03-link-in-bio/index.html" target="_blank" rel="noopener">Preview
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn" href="templates/03-link-in-bio/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <a class="btn btn--accent" href="#" data-buy="nova">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Mobile app</span>
+          <a class="cover" href="templates/04-mobile-app/index.html" target="_blank" rel="noopener" aria-label="Preview Tempo template"></a>
+          <img src="previews/tempo.png" alt="Tempo mobile app landing template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Tempo</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// mobile app · landing</p>
+          <p class="card__desc">A calm focus-app landing with glassy phone mockups, a live session ring and clean feature cards. For any app launch.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/04-mobile-app/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="tempo">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Creative agency</span>
+          <a class="cover" href="templates/05-agency/index.html" target="_blank" rel="noopener" aria-label="Preview Vellum template"></a>
+          <img src="previews/vellum.png" alt="Vellum creative agency template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Vellum</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// agency · studio</p>
+          <p class="card__desc">A brutalist studio site: oversized expanded type, a running marquee and a monochrome work grid. Bold by default.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/05-agency/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="vellum">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Fintech</span>
+          <a class="cover" href="templates/06-fintech/index.html" target="_blank" rel="noopener" aria-label="Preview Quanta template"></a>
+          <img src="previews/quanta.png" alt="Quanta fintech payments template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Quanta</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// fintech · payments</p>
+          <p class="card__desc">A trust-first payments landing with a multi-currency account card, an animated balance chart and clean feature blocks.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/06-fintech/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="quanta">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Conference / event</span>
+          <a class="cover" href="templates/07-event/index.html" target="_blank" rel="noopener" aria-label="Preview Pulse template"></a>
+          <img src="previews/pulse.png" alt="Pulse conference event template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Pulse</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// event · conference</p>
+          <p class="card__desc">A high-energy event page with a speaker lineup, a day schedule and three ticket tiers. Bold poster typography.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/07-event/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="pulse">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Online course</span>
+          <a class="cover" href="templates/08-course/index.html" target="_blank" rel="noopener" aria-label="Preview Cohort template"></a>
+          <img src="previews/cohort.png" alt="Cohort online course template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Cohort</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// course · education</p>
+          <p class="card__desc">A warm editorial course landing with a six-week curriculum, an instructor section and two enrollment plans.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/08-course/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="cohort">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Podcast</span>
+          <a class="cover" href="templates/09-podcast/index.html" target="_blank" rel="noopener" aria-label="Preview Frequency template"></a>
+          <img src="previews/frequency.png" alt="Frequency podcast template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Frequency</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// podcast · audio</p>
+          <p class="card__desc">A podcast site with a player-style hero, an episode list and a listen-anywhere row. Animated waveforms throughout.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/09-podcast/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="frequency">Get <span class="star">★</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="preview"><span class="badge">Analytics dashboard</span>
+          <a class="cover" href="templates/10-dashboard/index.html" target="_blank" rel="noopener" aria-label="Preview Atlas template"></a>
+          <img src="previews/atlas.png" alt="Atlas analytics dashboard template preview" loading="lazy" /></div>
+        <div class="card__body">
+          <div class="card__top"><h3>Atlas</h3><span class="card__price"><span class="star">★</span> 690</span></div>
+          <p class="card__type">// dashboard · saas</p>
+          <p class="card__desc">An analytics SaaS landing with a real app-shell product mockup, KPIs, a growth chart and clean pricing.</p>
+          <div class="card__actions">
+            <a class="btn" href="templates/10-dashboard/index.html" target="_blank" rel="noopener">Preview <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M6 3h7v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn--accent" href="#" data-buy="atlas">Get <span class="star">★</span></a>
           </div>
         </div>
       </article>
@@ -288,11 +382,11 @@ p{ text-wrap:pretty; }
   <div class="bundle__in">
     <div class="rv">
       <span class="eyebrow" style="color:var(--accent-ink)">The bundle</span>
-      <h2 style="margin-top:0.8rem">All three templates, one price.</h2>
-      <p>Beacon, Mara Vance and NOVA together. Everything above, with future updates included.</p>
+      <h2 style="margin-top:0.8rem">All ten templates, one price.</h2>
+      <p>Every template in the store, together, with every future template added free.</p>
     </div>
     <div class="bundle__buy rv">
-      <div class="bundle__price"><s>★ 2070</s><span class="star">★</span> 1490</div>
+      <div class="bundle__price"><s>★ 6900</s><span class="star">★</span> 2490</div>
       <a class="btn" href="#" data-buy="bundle">Get the bundle</a>
     </div>
   </div>

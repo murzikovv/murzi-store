@@ -35,33 +35,28 @@ SUPPORT = cfg.get("support_contact", "")
 # --- catalog -------------------------------------------------------------
 # price is in Telegram Stars (whole units). file is relative to /dist.
 CATALOG = {
-    "beacon": {
-        "title": "Beacon — AI / SaaS landing",
-        "price": 690,
-        "file": "beacon.zip",
-        "blurb": "A precision SaaS landing with a live signal dashboard, "
-                 "blueprint grid and a built-in dark band.",
-    },
-    "portfolio": {
-        "title": "Mara Vance — portfolio",
-        "price": 690,
-        "file": "mara-vance.zip",
-        "blurb": "A poster-grade portfolio: oversized type, a running marquee "
-                 "and a monochrome work index that comes alive on hover.",
-    },
-    "nova": {
-        "title": "NOVA — link in bio",
-        "price": 690,
-        "file": "nova.zip",
-        "blurb": "A drenched creator card with an aurora background, a featured "
-                 "release block and tappable link rows. Mobile-first.",
-    },
-    "bundle": {
-        "title": "All three templates — bundle",
-        "price": 1490,
-        "file": "murzi-templates-bundle.zip",
-        "blurb": "Beacon, Mara Vance and NOVA together, with future updates.",
-    },
+    "beacon":    {"title": "Beacon · AI / SaaS landing",       "price": 690, "file": "beacon.zip",
+                  "blurb": "A precision SaaS landing with a live signal dashboard, blueprint grid and a dark band."},
+    "portfolio": {"title": "Mara Vance · portfolio",           "price": 690, "file": "mara-vance.zip",
+                  "blurb": "A poster-grade portfolio: oversized type, a marquee and a hover work index."},
+    "nova":      {"title": "NOVA · link in bio",               "price": 690, "file": "nova.zip",
+                  "blurb": "A drenched creator card with an aurora background and tappable links. Mobile-first."},
+    "tempo":     {"title": "Tempo · mobile app landing",       "price": 690, "file": "tempo.zip",
+                  "blurb": "A focus-app landing with glassy phone mockups, a live session ring and feature cards."},
+    "vellum":    {"title": "Vellum · creative agency",         "price": 690, "file": "vellum.zip",
+                  "blurb": "A brutalist studio site: oversized type, a marquee and a monochrome work grid."},
+    "quanta":    {"title": "Quanta · fintech / payments",      "price": 690, "file": "quanta.zip",
+                  "blurb": "A payments landing with a multi-currency account card and an animated chart."},
+    "pulse":     {"title": "Pulse · conference / event",       "price": 690, "file": "pulse.zip",
+                  "blurb": "An event page with a speaker lineup, a day schedule and three ticket tiers."},
+    "cohort":    {"title": "Cohort · online course",           "price": 690, "file": "cohort.zip",
+                  "blurb": "A warm editorial course landing with a curriculum, instructor and enrollment plans."},
+    "frequency": {"title": "Frequency · podcast",              "price": 690, "file": "frequency.zip",
+                  "blurb": "A podcast site with a player-style hero, an episode list and animated waveforms."},
+    "atlas":     {"title": "Atlas · analytics dashboard",      "price": 690, "file": "atlas.zip",
+                  "blurb": "An analytics SaaS landing with a real app-shell product mockup, KPIs and pricing."},
+    "bundle":    {"title": "All ten templates · bundle",       "price": 2490, "file": "murzi-templates-bundle.zip",
+                  "blurb": "Every template in the store, together, with every future template added free."},
 }
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
