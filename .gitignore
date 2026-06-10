@@ -3,6 +3,9 @@
 # The paid product zips (bot delivers them privately)
 dist/
 
+# The pitch-deck binary is the paid deliverable, not a live preview
+templates/pitch-deck/pitch-deck.pptx
+
 # Bot token / secrets
 bot/config.json
 bot/.venv/

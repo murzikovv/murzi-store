@@ -74,6 +74,8 @@ CATALOG = {
                        "blurb": "An understated, editorial resume for senior roles. Serif, calm, confident. A4."},
     "cover-letter":   {"title": "Cover Letter · template",        "price": 290, "file": "cover-letter.zip",
                        "blurb": "A matching cover letter: same typography and accent as the resume set. A4."},
+    "pitch-deck": {"title": "Northstar · investor pitch deck (.pptx)", "price": 590, "file": "pitch-deck.zip",
+                   "blurb": "A 12-slide seed pitch deck in editable PowerPoint. Problem, market, traction chart, ask — every slide ready to fill in. Built-in fonts, opens anywhere."},
     "bundle":    {"title": "All thirteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
                   "blurb": "Every website template in the store, together, with every future one added free."},
 }
