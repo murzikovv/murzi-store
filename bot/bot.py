@@ -76,6 +76,8 @@ CATALOG = {
                        "blurb": "A matching cover letter: same typography and accent as the resume set. A4."},
     "pitch-deck": {"title": "Northstar · investor pitch deck (.pptx)", "price": 590, "file": "pitch-deck.zip",
                    "blurb": "A 12-slide seed pitch deck in editable PowerPoint. Problem, market, traction chart, ask — every slide ready to fill in. Built-in fonts, opens anywhere."},
+    "tracker":   {"title": "Ledger · budget & cashflow tracker (.xlsx)", "price": 490, "file": "tracker.zip",
+                  "blurb": "A small-business budget tracker in Excel. Type your income and expenses; the dashboard, monthly net and charts update themselves. Plain SUM formulas, no macros."},
     "bundle":    {"title": "All thirteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
                   "blurb": "Every website template in the store, together, with every future one added free."},
 }

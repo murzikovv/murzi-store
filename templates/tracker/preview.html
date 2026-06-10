@@ -1,0 +1,74 @@
+<!doctype html><meta charset="utf-8"><title>Ledger tracker preview</title>
+<style>
+  *{margin:0;box-sizing:border-box}
+  body{background:#0d1130;font-family:Calibri,'Segoe UI',sans-serif;width:1200px;padding:56px}
+  .app{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .bar{background:#1E2761;color:#fff;padding:18px 28px;display:flex;align-items:center;gap:14px}
+  .bar b{font-size:18px;letter-spacing:3px}
+  .bar .tabs{margin-left:auto;display:flex;gap:8px;font-size:13px;color:#CADCFC}
+  .bar .tabs span{padding:6px 14px;border-radius:7px}
+  .bar .tabs .on{background:#fff;color:#1E2761;font-weight:700}
+  .pad{padding:30px 34px}
+  h1{font-family:Georgia,serif;color:#1E2761;font-size:30px}
+  .sub{color:#6B7280;font-size:14px;margin-top:6px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:26px 0}
+  .kpi{background:#F4F7FE;border-radius:12px;padding:18px 20px}
+  .kpi .l{font-size:12px;color:#6B7280;text-transform:uppercase;letter-spacing:1px}
+  .kpi .v{font-family:Georgia,serif;font-weight:700;color:#1E2761;font-size:30px;margin-top:8px}
+  .kpi .v.g{color:#1F7A4D}
+  .low{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:end}
+  .bars{display:flex;gap:14px;align-items:flex-end;height:200px;border-bottom:2px solid #E3E8F4;padding-bottom:0}
+  .col{flex:1;height:100%;display:flex;gap:4px;align-items:flex-end;justify-content:center}
+  .col i{width:14px;border-radius:3px 3px 0 0;display:block}
+  .col .inc{background:#1E2761}
+  .col .exp{background:#CADCFC}
+  .mlabels{display:flex;gap:14px;margin-top:8px}
+  .mlabels span{flex:1;text-align:center;font-size:11px;color:#6B7280}
+  .legend{display:flex;gap:18px;margin-top:18px;font-size:13px;color:#2A2E3A}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .grid2{border:1px solid #E3E8F4;border-radius:12px;overflow:hidden}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th{background:#1E2761;color:#fff;padding:10px 12px;text-align:left;font-weight:700}
+  td{padding:9px 12px;color:#2A2E3A;border-top:1px solid #EEF1F8}
+  tr:nth-child(even) td{background:#F8FAFE}
+  td.n{text-align:right;font-variant-numeric:tabular-nums}
+  td.tot{font-weight:700;color:#1E2761;background:#CADCFC!important}
+</style>
+<div class="app">
+  <div class="bar"><b>LEDGER</b>
+    <div class="tabs"><span class="on">Dashboard</span><span>Income</span><span>Expenses</span></div></div>
+  <div class="pad">
+    <h1>Budget &amp; cashflow tracker</h1>
+    <div class="sub">Fill in Income and Expenses — every figure below updates itself.</div>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Total income</div><div class="v">412,800</div></div>
+      <div class="kpi"><div class="l">Total expenses</div><div class="v">268,400</div></div>
+      <div class="kpi"><div class="l">Net profit</div><div class="v g">144,400</div></div>
+      <div class="kpi"><div class="l">Profit margin</div><div class="v">35.0%</div></div>
+    </div>
+    <div class="low">
+      <div>
+        <div class="bars" id="bars"></div>
+        <div class="mlabels" id="ml"></div>
+        <div class="legend"><span><i style="background:#1E2761"></i>Income</span><span><i style="background:#CADCFC"></i>Expenses</span></div>
+      </div>
+      <div class="grid2">
+        <table>
+          <tr><th>Month</th><th style="text-align:right">Income</th><th style="text-align:right">Expenses</th><th style="text-align:right">Net</th></tr>
+          <tr><td>Jan</td><td class="n">28,400</td><td class="n">19,200</td><td class="n tot">9,200</td></tr>
+          <tr><td>Feb</td><td class="n">31,100</td><td class="n">20,050</td><td class="n tot">11,050</td></tr>
+          <tr><td>Mar</td><td class="n">34,800</td><td class="n">22,400</td><td class="n tot">12,400</td></tr>
+          <tr><td>Apr</td><td class="n">33,200</td><td class="n">21,800</td><td class="n tot">11,400</td></tr>
+          <tr><td>May</td><td class="n">37,600</td><td class="n">23,100</td><td class="n tot">14,500</td></tr>
+          <tr><td>Jun</td><td class="n">39,900</td><td class="n">24,300</td><td class="n tot">15,600</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const inc=[28,31,35,33,38,40,37,42,39,44,41,46], exp=[19,20,22,22,23,24,23,26,25,27,26,28];
+  const M=['J','F','M','A','M','J','J','A','S','O','N','D'], mx=Math.max(...inc);
+  bars.innerHTML=inc.map((v,i)=>`<div class="col"><i class="inc" style="height:${v/mx*100}%"></i><i class="exp" style="height:${exp[i]/mx*100}%"></i></div>`).join('');
+  ml.innerHTML=M.map(m=>`<span>${m}</span>`).join('');
+</script>

@@ -6,6 +6,9 @@ dist/
 # The pitch-deck binary is the paid deliverable, not a live preview
 templates/pitch-deck/pitch-deck.pptx
 
+# The tracker workbook is the paid deliverable, not a live preview
+templates/tracker/ledger-tracker.xlsx
+
 # Bot token / secrets
 bot/config.json
 bot/.venv/
