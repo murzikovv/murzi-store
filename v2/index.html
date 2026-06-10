@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>murzi/store — templates with a pulse</title>
+<meta name="description" content="Premium one-file website and resume templates. Cinematic motion, zero build step, pay with Telegram Stars." />
+<script>document.documentElement.className='js';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   murzi/store · v2 flagship — cinematic motion edition
+   GSAP + ScrollTrigger + Lenis. Dark premium, lime signal.
+   ============================================================ */
+:root{
+  --bg:#0b0d0c; --bg-2:#121514; --ink:#f4f6f3; --soft:#b7beb6; --muted:#7c847b;
+  --line:rgba(255,255,255,.12); --lime:#b8e62e; --lime-deep:#8fb71c; --ink-on:#15200a;
+  --display:"Hanken Grotesk",system-ui,sans-serif; --mono:"Spline Sans Mono",monospace;
+  --maxw:1280px; --gut:clamp(1.25rem,4vw,3.5rem); --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis{height:auto} .lenis.lenis-smooth{scroll-behavior:auto}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:clamp(1rem,.96rem+.2vw,1.07rem);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-weight:800;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.mono{font-family:var(--mono)}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+::selection{background:var(--lime);color:var(--ink-on)}
+
+/* cursor */
+.cursor{position:fixed;z-index:200;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--lime);
+  pointer-events:none;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+.cursor.big{width:64px;height:64px}
+@media (hover:none){.cursor{display:none}}
+
+/* preloader */
+.pre{position:fixed;inset:0;z-index:150;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.pre__n{font-family:var(--mono);font-size:clamp(3rem,10vw,7rem);font-weight:600;color:var(--lime);letter-spacing:-.04em}
+.pre__t{font-family:var(--mono);font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.2em}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;mix-blend-mode:difference}
+.nav__in{display:flex;justify-content:space-between;align-items:center;height:76px}
+.brand{font-family:var(--mono);font-weight:600;font-size:1.15rem;color:#fff}
+.brand b{color:#fff;opacity:.5}
+.nav a.cta{font-family:var(--mono);font-size:.85rem;border:1px solid #fff;border-radius:99px;padding:.6em 1.3em;color:#fff}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero__media{position:absolute;inset:0;z-index:0}
+.hero__media video,.hero__media canvas{width:100%;height:100%;object-fit:cover;display:block}
+.hero__media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,13,12,.45),rgba(11,13,12,.15) 40%,rgba(11,13,12,.92) 95%)}
+.hero__c{position:relative;z-index:2;width:100%;padding-bottom:clamp(3rem,7vh,5rem)}
+.hero__kick{font-family:var(--mono);color:var(--lime);font-size:.8rem;text-transform:uppercase;letter-spacing:.18em;display:inline-flex;align-items:center;gap:.8em}
+.hero__kick::before{content:"";width:34px;height:1px;background:var(--lime)}
+.hero h1{font-size:clamp(3rem,1.5rem+9vw,9rem);margin:.25em 0 .15em}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l span{display:inline-block}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero__row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.hero__sub{max-width:36ch;color:var(--soft);font-size:clamp(1rem,.95rem+.4vw,1.2rem)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:.6em;font-family:var(--mono);font-weight:600;font-size:.95rem;
+  background:var(--lime);color:var(--ink-on);border-radius:99px;padding:1em 1.8em;overflow:hidden;will-change:transform}
+.btn span{position:relative;z-index:1}
+.btn::after{content:"";position:absolute;inset:0;background:#fff;border-radius:99px;transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn:hover::after{transform:translateY(0)}
+.hero__scroll{position:absolute;right:var(--gut);bottom:2rem;z-index:2;font-family:var(--mono);font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.2em;writing-mode:vertical-rl}
+
+/* marquee */
+.marq{border-block:1px solid var(--line);padding:1.1rem 0;overflow:hidden;background:var(--bg)}
+.marq__row{display:flex;gap:3rem;white-space:nowrap;font-weight:800;font-size:clamp(1.2rem,1rem+1.5vw,2rem);letter-spacing:-.02em;width:max-content}
+.marq__row span{display:flex;gap:3rem;align-items:center}
+.marq__row span::after{content:"✦";color:var(--lime);font-size:.8em}
+
+/* horizontal showcase */
+.show{position:relative}
+.show__head{padding:clamp(5rem,10vh,8rem) 0 2rem}
+.show__head h2{font-size:clamp(2.4rem,1.5rem+4vw,5rem);max-width:16ch}
+.show__head h2 em{font-style:normal;color:var(--lime)}
+.show__track{display:flex;gap:clamp(1.2rem,2.5vw,2rem);padding:0 var(--gut) 4rem;width:max-content;align-items:stretch}
+.tcard{position:relative;width:clamp(300px,34vw,460px);border-radius:18px;background:var(--bg-2);border:1px solid var(--line);
+  overflow:hidden;flex:none;transform-style:preserve-3d;will-change:transform}
+.tcard img{width:100%;aspect-ratio:16/10.5;object-fit:cover;object-position:top;display:block;transform:translateZ(28px) scale(1.04)}
+.tcard__b{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.2rem;transform:translateZ(40px)}
+.tcard__b h3{font-size:1.25rem;letter-spacing:-.02em}
+.tcard__b .mono{font-size:.8rem;color:var(--lime)}
+.tcard__tag{position:absolute;z-index:2;top:.8rem;left:.8rem;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;
+  background:rgba(11,13,12,.72);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:6px;padding:.35em .7em;color:var(--soft)}
+
+/* stats */
+.stats{padding:clamp(5rem,12vh,9rem) 0}
+.stats__g{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+@media(max-width:760px){.stats__g{grid-template-columns:1fr 1fr}}
+.stats__g div{background:var(--bg);padding:2.4rem 1.6rem}
+.stats__g b{display:block;font-size:clamp(2.4rem,1.6rem+3vw,4rem);font-weight:800;letter-spacing:-.04em}
+.stats__g b i{font-style:normal;color:var(--lime)}
+.stats__g span{font-family:var(--mono);font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* docs */
+.docs{padding:0 0 clamp(5rem,12vh,9rem);position:relative}
+.docs__in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+@media(max-width:880px){.docs__in{grid-template-columns:1fr}}
+.docs h2{font-size:clamp(2.2rem,1.4rem+3.4vw,4.2rem)}
+.docs h2 em{font-style:normal;color:var(--lime)}
+.docs p{color:var(--soft);margin-top:1.2rem;max-width:42ch}
+.docs .btn{margin-top:2rem}
+.fan{position:relative;height:clamp(380px,46vw,560px)}
+.fan img{position:absolute;width:62%;border-radius:10px;box-shadow:0 50px 90px -30px rgba(0,0,0,.8);border:1px solid var(--line);will-change:transform}
+.fan img:nth-child(1){left:0;top:6%;transform:rotate(-7deg)}
+.fan img:nth-child(2){left:22%;top:0;transform:rotate(2deg);z-index:2}
+.fan img:nth-child(3){left:42%;top:10%;transform:rotate(9deg)}
+
+/* big cta */
+.cta{position:relative;padding:clamp(6rem,16vh,11rem) 0;text-align:center;overflow:hidden}
+.cta h2{font-size:clamp(2.6rem,1.4rem+6.5vw,7rem);max-width:14ch;margin-inline:auto}
+.cta h2 em{font-style:normal;color:var(--lime)}
+.cta p{color:var(--soft);margin:1.4rem auto 2.4rem;max-width:38ch}
+.cta__glow{position:absolute;left:50%;top:50%;width:60vw;height:60vw;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(184,230,46,.14),transparent 60%);pointer-events:none}
+
+/* footer */
+.foot{border-top:1px solid var(--line);padding:2.2rem 0}
+.foot__in{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.foot__in a:hover{color:var(--lime)}
+
+@media (prefers-reduced-motion:reduce){
+  .pre{display:none}
+  .hero h1 .l span{transform:none!important;opacity:1!important}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+
+<div class="pre" id="pre"><div class="pre__n" id="preN">00</div><div class="pre__t">murzi/store · loading the good stuff</div></div>
+
+<header class="nav"><div class="wrap nav__in">
+  <a class="brand" href="#">murzi<b>/</b>store</a>
+  <a class="cta" href="https://t.me/murzistudio_bot" data-mag>Get templates</a>
+</div></header>
+
+<section class="hero" id="top">
+  <div class="hero__media">
+    <canvas id="fx"></canvas>
+    <video id="heroVid" src="assets/hero.mp4" autoplay muted loop playsinline style="display:none;position:absolute;inset:0"></video>
+  </div>
+  <div class="wrap hero__c">
+    <span class="hero__kick">Premium one-file templates</span>
+    <h1 id="hTitle">
+      <span class="l"><span>Websites with</span></span>
+      <span class="l"><span>a <em>pulse</em>, not</span></span>
+      <span class="l"><span>a pulse check.</span></span>
+    </h1>
+    <div class="hero__row">
+      <p class="hero__sub">Sixteen hand-built templates. One HTML file each, cinematic motion baked in, zero build step. Pay with Telegram Stars from anywhere.</p>
+      <a class="btn" href="https://murzikovv.github.io/murzi-store/#store" data-mag><span>Browse the store →</span></a>
+    </div>
+  </div>
+  <span class="hero__scroll">scroll ↓</span>
+</section>
+
+<div class="marq"><div class="marq__row" id="marq">
+  <span>Landing pages</span><span>Portfolios</span><span>Dashboards</span><span>Restaurants</span><span>Resumes</span><span>Podcasts</span><span>Fintech</span><span>Events</span>
+  <span>Landing pages</span><span>Portfolios</span><span>Dashboards</span><span>Restaurants</span><span>Resumes</span><span>Podcasts</span><span>Fintech</span><span>Events</span>
+</div></div>
+
+<section class="show">
+  <div class="wrap show__head">
+    <span class="hero__kick">The catalog</span>
+    <h2>Thirteen worlds. <em>Zero</em> lookalikes.</h2>
+  </div>
+  <div class="show__track" id="track">
+    <a class="tcard" href="../templates/01-ai-saas-landing/index.html"><span class="tcard__tag">AI / SaaS</span><img src="../previews/beacon.png" alt="Beacon"><div class="tcard__b"><h3>Beacon</h3><span class="mono">★ 690</span></div></a>
+    <a class="tcard" href="../templates/02-portfolio/index.html"><span class="tcard__tag">Portfolio</span><img src="../previews/portfolio.png" alt="Mara Vance"><div class="tcard__b"><h3>Mara Vance</h3><span class="mono">★ 690</span></div></a>
+    <a class="tcard" href="../templates/05-agency/index.html"><span class="tcard__tag">Agency</span><img src="../previews/vellum.png" alt="Vellum"><div class="tcard__b"><h3>Vellum</h3><span class="mono">★ 690</span></div></a>
+    <a class="tcard" href="../templates/11-restaurant/index.html"><span class="tcard__tag">Restaurant</span><img src="../previews/saffron.png" alt="Saffron"><div class="tcard__b"><h3>Saffron</h3><span class="mono">★ 690</span></div></a>
+    <a class="tcard" href="../templates/06-fintech/index.html"><span class="tcard__tag">Fintech</span><img src="../previews/quanta.png" alt="Quanta"><div class="tcard__b"><h3>Quanta</h3><span class="mono">★ 690</span></div></a>
+    <a class="tcard" href="../templates/10-dashboard/index.html"><span class="tcard__tag">Dashboard</span><img src="../previews/atlas.png" alt="Atlas"><div class="tcard__b"><h3>Atlas</h3><span class="mono">★ 690</span></div></a>
+    <a class="tcard" href="../templates/13-real-estate/index.html"><span class="tcard__tag">Real estate</span><img src="../previews/marin.png" alt="The Marin"><div class="tcard__b"><h3>The Marin</h3><span class="mono">★ 690</span></div></a>
+  </div>
+</section>
+
+<section class="stats"><div class="wrap stats__g" id="stats">
+  <div><b><i data-n="16">0</i></b><span>templates in store</span></div>
+  <div><b data-pre="★"><i data-n="690">0</i></b><span>per website template</span></div>
+  <div><b><i data-n="1">0</i> file</b><span>per template, no build</span></div>
+  <div><b><i data-n="0">0</i>₽</b><span>free resume inside</span></div>
+</div></section>
+
+<section class="docs"><div class="wrap docs__in">
+  <div>
+    <span class="hero__kick">Not just websites</span>
+    <h2>Resumes that get the <em>interview</em>.</h2>
+    <p>Five print-ready A4 resumes and a matching cover letter. Open in a browser, edit the text, print to PDF. The classic one is free.</p>
+    <a class="btn" href="https://murzikovv.github.io/murzi-store/#resumes" data-mag><span>Grab the free one 🎁</span></a>
+  </div>
+  <div class="fan" id="fan">
+    <img src="../previews/resume-twotone.png" alt="Two-tone resume">
+    <img src="../previews/resume-modern.png" alt="Modern resume">
+    <img src="../previews/resume-bold.png" alt="Bold resume">
+  </div>
+</div></section>
+
+<section class="cta">
+  <div class="cta__glow"></div>
+  <div class="wrap">
+    <span class="hero__kick" style="justify-content:center;display:inline-flex">Checkout in Telegram</span>
+    <h2>Own the template. <em>Ship</em> tonight.</h2>
+    <p>Pick one, pay with Stars, get the file in seconds. Edit the text, swap a colour variable, done.</p>
+    <a class="btn" href="https://t.me/murzistudio_bot" data-mag><span>Open the store bot →</span></a>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap foot__in">
+  <span>© 2026 murzi/store</span>
+  <a href="https://murzikovv.github.io/murzi-store/">classic storefront</a>
+  <span>made by murzi.studio</span>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+gsap.registerPlugin(ScrollTrigger);
+
+/* smooth scroll */
+let lenis;
+if(!reduce){lenis=new Lenis({duration:1.15});lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);}
+
+/* cursor */
+const cur=document.getElementById('cur');
+addEventListener('pointermove',e=>{gsap.to(cur,{x:e.clientX,y:e.clientY,duration:.35,ease:'power3.out'})});
+document.querySelectorAll('a,.btn').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));
+  el.addEventListener('pointerleave',()=>cur.classList.remove('big'))});
+
+/* magnetic buttons */
+document.querySelectorAll('[data-mag]').forEach(el=>{
+  el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();
+    gsap.to(el,{x:(e.clientX-r.left-r.width/2)*.3,y:(e.clientY-r.top-r.height/2)*.3,duration:.4,ease:'power3.out'})});
+  el.addEventListener('pointerleave',()=>gsap.to(el,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}));
+});
+
+/* hero canvas: drifting wireframe panels + particles (3D-projected) */
+const cv=document.getElementById('fx'),cx=cv.getContext('2d');
+let W,H;const DPR=Math.min(devicePixelRatio,2);
+function rs(){W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR}rs();addEventListener('resize',rs);
+const P=[...Array(90)].map(()=>({x:Math.random()*2-1,y:Math.random()*2-1,z:Math.random()*2+0.3,s:Math.random()*1.5+.5}));
+const panels=[...Array(5)].map((_,i)=>({rx:Math.random()*6.28,ry:Math.random()*6.28,z:1+i*.8,w:.5+Math.random()*.5,sp:.0004+Math.random()*.0006}));
+let t0=0;
+function draw(t){const dt=t-t0;t0=t;
+  cx.clearRect(0,0,W,H);const f=Math.min(W,H);
+  /* particles */
+  for(const p of P){p.z-=.00018*dt;if(p.z<.2)p.z=2.3;
+    const sx=W/2+p.x*f/p.z*.5,sy=H/2+p.y*f/p.z*.5,r=p.s*DPR/p.z;
+    cx.fillStyle=`rgba(184,230,46,${.5/p.z})`;cx.beginPath();cx.arc(sx,sy,r,0,7);cx.fill();}
+  /* wireframe panels */
+  cx.strokeStyle='rgba(184,230,46,.20)';cx.lineWidth=DPR;
+  for(const pl of panels){pl.ry+=pl.sp*dt;
+    const cw=f*pl.w/pl.z,ch=cw*.62,cxp=W/2+Math.sin(pl.ry)*W*.3,cyp=H/2+Math.cos(pl.ry*.7)*H*.22;
+    const sk=Math.sin(pl.ry*1.3)*.45;
+    cx.save();cx.translate(cxp,cyp);cx.transform(1,sk*.2,sk,1,0,0);
+    cx.strokeRect(-cw/2,-ch/2,cw,ch);
+    cx.globalAlpha=.45;cx.beginPath();
+    for(let i=1;i<4;i++){cx.moveTo(-cw/2+cw*i/4,-ch/2);cx.lineTo(-cw/2+cw*i/4,ch/2);}
+    cx.stroke();cx.globalAlpha=1;cx.restore();}
+  requestAnimationFrame(draw);}
+if(!reduce)requestAnimationFrame(draw);else cv.style.display='none';
+
+/* hero video: show if the file exists */
+const v=document.getElementById('heroVid');
+v.addEventListener('canplay',()=>{v.style.display='block';cv.style.opacity=.5});
+v.addEventListener('error',()=>v.remove());
+
+/* preloader + hero reveal */
+const pre=document.getElementById('pre'),preN=document.getElementById('preN');
+const lines=document.querySelectorAll('#hTitle .l > span');
+if(reduce){pre.remove()}else{
+  const o={n:0};
+  gsap.timeline()
+    .to(o,{n:100,duration:1.1,ease:'power2.inOut',onUpdate:()=>preN.textContent=String(Math.round(o.n)).padStart(2,'0')})
+    .to(pre,{yPercent:-100,duration:.7,ease:'power4.inOut'},'+=.1')
+    .from(lines,{yPercent:110,duration:1,stagger:.09,ease:'power4.out'},'-=.35')
+    .from('.hero__sub,.hero__row .btn,.hero__kick',{opacity:0,y:24,duration:.7,stagger:.08,ease:'power3.out'},'-=.6')
+    .set(pre,{display:'none'});
+}
+
+/* marquee drift + scroll-speed skew */
+if(!reduce){
+  gsap.to('#marq',{xPercent:-50,ease:'none',duration:22,repeat:-1});
+  let prox=0;
+  ScrollTrigger.create({onUpdate:s=>{prox=gsap.utils.clamp(-8,8,s.getVelocity()/120);
+    gsap.to('#marq',{skewX:prox,duration:.4})}});
+}
+
+/* horizontal showcase */
+const track=document.getElementById('track');
+if(!reduce){
+  const dist=()=>track.scrollWidth-innerWidth;
+  gsap.to(track,{x:()=>-dist(),ease:'none',
+    scrollTrigger:{trigger:'.show',start:'top top',end:()=>'+='+dist(),scrub:1,pin:true,invalidateOnRefresh:true}});
+}
+
+/* 3D tilt cards */
+document.querySelectorAll('.tcard').forEach(c=>{
+  c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();
+    const rx=((e.clientY-r.top)/r.height-.5)*-10,ry=((e.clientX-r.left)/r.width-.5)*12;
+    gsap.to(c,{rotateX:rx,rotateY:ry,transformPerspective:900,duration:.45,ease:'power2.out'})});
+  c.addEventListener('pointerleave',()=>gsap.to(c,{rotateX:0,rotateY:0,duration:.8,ease:'elastic.out(1,.5)'}));
+});
+
+/* stats counters */
+document.querySelectorAll('#stats i').forEach(el=>{
+  const n=+el.dataset.n;
+  ScrollTrigger.create({trigger:el,start:'top 85%',once:true,onEnter:()=>{
+    gsap.fromTo(el,{textContent:0},{textContent:n,duration:1.4,ease:'power2.out',snap:{textContent:1}})}});
+});
+
+/* resume fan parallax */
+if(!reduce){
+  gsap.utils.toArray('#fan img').forEach((im,i)=>{
+    gsap.to(im,{y:(i-1)*-46,scrollTrigger:{trigger:'#fan',start:'top bottom',end:'bottom top',scrub:1}});
+  });
+  /* section reveals */
+  gsap.utils.toArray('.show__head,.stats__g,.docs__in > div,.cta h2,.cta p,.cta .btn').forEach(el=>{
+    gsap.from(el,{opacity:0,y:40,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+  });
+  gsap.to('.cta__glow',{scale:1.35,opacity:.8,scrollTrigger:{trigger:'.cta',start:'top bottom',end:'bottom top',scrub:1}});
+}
+</script>
+</body>
+</html>
