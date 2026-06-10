@@ -1,9 +1,12 @@
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ITEMS = [
-    ("resume-modern",  "Resume — Modern",  "a two-column modern resume with a sidebar, skill bars and a timeline"),
-    ("resume-classic", "Resume — Classic", "a clean, single-column, ATS-friendly resume"),
-    ("resume-bold",    "Resume — Bold",    "a confident resume with a colour banner and a two-column body"),
+    ("resume-modern",    "Resume — Modern",    "a two-column modern resume with a sidebar, skill bars and a timeline"),
+    ("resume-classic",   "Resume — Classic",   "a clean, single-column, ATS-friendly resume"),
+    ("resume-bold",      "Resume — Bold",      "a confident resume with a colour banner and a two-column body"),
+    ("resume-twotone",   "Resume — Two-Tone",  "a full-colour sidebar resume with skill bars"),
+    ("resume-executive", "Resume — Executive", "an understated, editorial resume for senior roles"),
+    ("cover-letter",     "Cover Letter",       "a matching cover letter with the same typography and accent as the resume set"),
 ]
 LICENSE = '''murzi/store — Single Commercial License
 Template: "{product}" (Resume / CV)

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume — Executive (A4, print-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESUME — EXECUTIVE  ·  A4, editorial, print-ready
+   Understated and senior. Open → edit → File → Print → Save as PDF.
+   Rebrand: change --accent below.
+   ============================================================ */
+:root{
+  --paper:#fff; --ink:#1b1b1b; --soft:#3f3f3f; --muted:#888; --line:#dcdcdc;
+  --accent:#1b1b1b;            /* keep near-black for a quiet, executive feel */
+  --rule:#c9a227;             /* thin gold rule accent */
+}
+*{ box-sizing:border-box; margin:0; }
+html,body{ background:#e9ecef; }
+body{ font-family:"Hanken Grotesk",system-ui,sans-serif; color:var(--ink); font-size:10.4pt; line-height:1.55; padding:24px 0; -webkit-font-smoothing:antialiased; }
+.page{ width:210mm; min-height:297mm; margin:0 auto; background:var(--paper); padding:20mm 22mm; box-shadow:0 10px 40px -12px rgba(0,0,0,.25); }
+
+.head{ text-align:center; padding-bottom:6mm; }
+.name{ font-family:"Spectral",Georgia,serif; font-weight:500; font-size:30pt; letter-spacing:.06em; text-transform:uppercase; }
+.rule{ width:18mm; height:2px; background:var(--rule); margin:4mm auto; }
+.role{ font-family:"Spectral",serif; font-style:italic; font-size:13pt; color:var(--soft); }
+.contact{ margin-top:3mm; font-size:9.2pt; color:var(--muted); letter-spacing:.02em; }
+.contact i{ font-style:normal; margin:0 2.5mm; }
+
+.row{ display:grid; grid-template-columns:38mm 1fr; gap:6mm; padding:6mm 0; border-top:1px solid var(--line); }
+.row:first-of-type{ border-top:1.5px solid var(--ink); margin-top:4mm; }
+.label{ font-family:"Spectral",serif; font-size:11pt; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); padding-top:.5mm; }
+.summary{ color:var(--soft); font-size:10.6pt; }
+
+.job{ margin-bottom:5mm; } .job:last-child{ margin-bottom:0; }
+.job__top{ display:flex; justify-content:space-between; align-items:baseline; gap:5mm; }
+.job__role{ font-family:"Spectral",serif; font-weight:600; font-size:11.5pt; }
+.job__date{ color:var(--muted); font-size:9pt; white-space:nowrap; }
+.job__co{ font-style:italic; color:var(--soft); font-size:10pt; margin:.4mm 0 1.6mm; }
+.job ul{ margin:0; padding-left:5mm; } .job li{ color:var(--soft); margin-bottom:.8mm; }
+.edu b{ font-weight:600; } .edu p{ font-style:italic; color:var(--soft); font-size:9.8pt; } .edu .y{ color:var(--muted); font-size:9pt; } .edu .item{ margin-bottom:3.5mm; }
+.skills{ color:var(--soft); }
+
+@page{ size:A4; margin:0; }
+@media print{ html,body{ background:#fff; } body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; } .page{ box-shadow:none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div class="name">Daniel Whitford</div>
+    <div class="rule"></div>
+    <div class="role">Chief Operating Officer</div>
+    <div class="contact"><span>daniel.whitford@email.com</span><i>·</i><span>+1 555 0119</span><i>·</i><span>Boston, MA</span><i>·</i><span>linkedin.com/in/dwhitford</span></div>
+  </header>
+
+  <div class="row">
+    <div class="label">Profile</div>
+    <p class="summary">Operations leader with eighteen years scaling companies from Series A to public. I build the teams, systems and rhythm that let a business grow without losing the plot, and I do it quietly.</p>
+  </div>
+
+  <div class="row">
+    <div class="label">Experience</div>
+    <div>
+      <div class="job">
+        <div class="job__top"><span class="job__role">Chief Operating Officer</span><span class="job__date">2019 — Present</span></div>
+        <div class="job__co">Plenari, Boston</div>
+        <ul><li>Scaled the company from 60 to 540 people across three continents.</li><li>Owned the operating plan through a $90M raise and a clean path to profitability.</li><li>Built the leadership team and the rituals that hold it together.</li></ul>
+      </div>
+      <div class="job">
+        <div class="job__top"><span class="job__role">VP, Operations</span><span class="job__date">2013 — 2019</span></div>
+        <div class="job__co">Northbeam, New York</div>
+        <ul><li>Stood up finance, people and legal functions from scratch.</li><li>Led the operational diligence through an acquisition.</li></ul>
+      </div>
+      <div class="job">
+        <div class="job__top"><span class="job__role">Director of Operations</span><span class="job__date">2007 — 2013</span></div>
+        <div class="job__co">Tessera, Chicago</div>
+        <ul><li>Ran a 120-person operation and cut overhead 18% over three years.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Education</div>
+    <div class="edu">
+      <div class="item"><b>MBA</b><p>Harvard Business School</p><span class="y">2005 — 2007</span></div>
+      <div class="item"><b>BS, Economics</b><p>University of Chicago</p><span class="y">1999 — 2003</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Skills</div>
+    <p class="skills">Operating strategy · Team building · Finance &amp; FP&amp;A · People &amp; culture · M&amp;A and diligence · Board reporting · Process design · International scaling</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume — Two-Tone (A4, print-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESUME — TWO-TONE  ·  A4, full-colour sidebar, print-ready
+   Open → edit text → File → Print → Save as PDF (Background ON).
+   Rebrand: change --accent below.
+   ============================================================ */
+:root{
+  --paper:#fff; --ink:#1d232b; --soft:#49525d; --muted:#7c8794; --line:#e4e8ec;
+  --accent:#143b4a;            /* deep petrol — change to rebrand */
+  --accent-line:#3a6c7e; --on-accent:#eef5f7; --chip:rgba(255,255,255,.12);
+}
+*{ box-sizing:border-box; margin:0; }
+html,body{ background:#e9ecef; }
+body{ font-family:"Hanken Grotesk",system-ui,sans-serif; color:var(--ink); font-size:10.2pt; line-height:1.5; padding:24px 0; -webkit-font-smoothing:antialiased; }
+.page{ width:210mm; min-height:297mm; margin:0 auto; background:var(--paper); display:grid; grid-template-columns:70mm 1fr; box-shadow:0 10px 40px -12px rgba(0,0,0,.25); overflow:hidden; }
+
+.side{ background:var(--accent); color:var(--on-accent); padding:16mm 11mm; }
+.avatar{ width:36mm; height:36mm; border-radius:50%; margin:0 auto 7mm; background:rgba(255,255,255,.14); border:2px solid rgba(255,255,255,.3);
+  display:grid; place-items:center; font-size:30pt; font-weight:800; color:#fff; }
+.s-block{ margin-bottom:8mm; }
+.s-title{ font-weight:800; font-size:8.4pt; letter-spacing:.16em; text-transform:uppercase; color:#fff; margin-bottom:3mm; padding-bottom:1.5mm; border-bottom:1px solid var(--accent-line); }
+.contact li{ list-style:none; display:flex; gap:2.5mm; align-items:flex-start; margin-bottom:2.2mm; font-size:9.2pt; opacity:.92; word-break:break-word; }
+.contact svg{ width:3.6mm; height:3.6mm; flex:none; margin-top:.6mm; opacity:.85; }
+.skill{ margin-bottom:2.6mm; }
+.skill .row{ display:flex; justify-content:space-between; font-size:9.2pt; margin-bottom:1.1mm; }
+.skill .row span{ opacity:.7; }
+.bar{ height:1.8mm; border-radius:2mm; background:rgba(255,255,255,.16); overflow:hidden; }
+.bar i{ display:block; height:100%; background:#fff; border-radius:2mm; }
+.lang{ display:flex; justify-content:space-between; font-size:9.2pt; margin-bottom:1.6mm; }
+.lang span{ opacity:.7; }
+.s-edu .item{ margin-bottom:4mm; } .s-edu b{ display:block; font-size:9.6pt; } .s-edu p{ opacity:.85; font-size:8.8pt; } .s-edu .y{ opacity:.6; font-size:8.4pt; }
+
+.main{ padding:16mm 14mm; }
+.name{ font-weight:800; font-size:28pt; line-height:1.02; letter-spacing:-.02em; color:var(--accent); }
+.role{ font-weight:600; font-size:11.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:1.5mm; }
+.m-block{ margin-top:8mm; }
+.m-title{ font-weight:800; font-size:9pt; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:3mm; margin-bottom:3.5mm; }
+.m-title::after{ content:""; flex:1; height:1.5px; background:var(--line); }
+.summary{ color:var(--soft); }
+.exp{ margin-bottom:5mm; } .exp:last-child{ margin-bottom:0; }
+.exp__top{ display:flex; justify-content:space-between; align-items:baseline; gap:4mm; }
+.exp__role{ font-weight:700; font-size:11pt; }
+.exp__date{ color:var(--muted); font-size:8.8pt; white-space:nowrap; }
+.exp__co{ color:var(--accent); font-weight:600; font-size:9.6pt; margin:.4mm 0 1.8mm; }
+.exp ul{ margin:0; padding-left:4.5mm; } .exp li{ color:var(--soft); font-size:9.6pt; margin-bottom:1mm; }
+
+@page{ size:A4; margin:0; }
+@media print{ html,body{ background:#fff; } body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; } .page{ box-shadow:none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <div class="avatar">EC</div>
+    <div class="s-block">
+      <div class="s-title">Contact</div>
+      <ul class="contact">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>emma.chen@email.com</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>+1 555 0164</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="2"/></svg>Seattle, WA</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" stroke="currentColor" stroke-width="2"/></svg>emmachen.io</li>
+      </ul>
+    </div>
+    <div class="s-block">
+      <div class="s-title">Skills</div>
+      <div class="skill"><div class="row">Project management<span>Expert</span></div><div class="bar"><i style="width:94%"></i></div></div>
+      <div class="skill"><div class="row">Stakeholder comms<span>Expert</span></div><div class="bar"><i style="width:88%"></i></div></div>
+      <div class="skill"><div class="row">Agile &amp; Scrum<span>Advanced</span></div><div class="bar"><i style="width:84%"></i></div></div>
+      <div class="skill"><div class="row">Roadmapping<span>Advanced</span></div><div class="bar"><i style="width:80%"></i></div></div>
+      <div class="skill"><div class="row">Data &amp; reporting<span>Proficient</span></div><div class="bar"><i style="width:70%"></i></div></div>
+    </div>
+    <div class="s-block">
+      <div class="s-title">Languages</div>
+      <div class="lang">English<span>Native</span></div>
+      <div class="lang">Mandarin<span>Native</span></div>
+      <div class="lang">German<span>Intermediate</span></div>
+    </div>
+    <div class="s-block s-edu">
+      <div class="s-title">Education</div>
+      <div class="item"><b>MBA</b><p>University of Washington</p><span class="y">2017 — 2019</span></div>
+      <div class="item"><b>BA, Business</b><p>UC Berkeley</p><span class="y">2011 — 2015</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header><div class="name">Emma Chen</div><div class="role">Senior Project Manager</div></header>
+    <section class="m-block">
+      <div class="m-title">Profile</div>
+      <p class="summary">Project manager with ten years delivering software on time and on scope across product and engineering teams. I keep projects calm, stakeholders informed, and decisions written down.</p>
+    </section>
+    <section class="m-block">
+      <div class="m-title">Experience</div>
+      <div class="exp">
+        <div class="exp__top"><span class="exp__role">Senior Project Manager</span><span class="exp__date">2021 — Present</span></div>
+        <div class="exp__co">Tessera · Seattle</div>
+        <ul><li>Delivered a 14-month platform replatform on time across 5 teams.</li><li>Cut average cycle time 22% by reworking the intake and planning flow.</li><li>Ran portfolio reporting that leadership now uses to prioritise quarterly.</li></ul>
+      </div>
+      <div class="exp">
+        <div class="exp__top"><span class="exp__role">Project Manager</span><span class="exp__date">2018 — 2021</span></div>
+        <div class="exp__co">Northbeam · Remote</div>
+        <ul><li>Managed concurrent product launches with zero missed go-lives.</li><li>Introduced the RACI and ritual set the org still uses.</li></ul>
+      </div>
+      <div class="exp">
+        <div class="exp__top"><span class="exp__role">Program Coordinator</span><span class="exp__date">2015 — 2018</span></div>
+        <div class="exp__co">Plenari · San Francisco</div>
+        <ul><li>Coordinated cross-team programs and owned the status reporting cadence.</li></ul>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

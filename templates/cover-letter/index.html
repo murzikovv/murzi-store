@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cover Letter (A4, print-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   COVER LETTER  ·  A4, print-ready, matches the resume set
+   Open → edit text → File → Print → Save as PDF (Background ON).
+   Rebrand: change --accent (matches Resume — Modern by default).
+   ============================================================ */
+:root{
+  --paper:#fff; --ink:#1c2530; --soft:#3f4954; --muted:#7a8794; --line:#e2e7ec;
+  --accent:#2f5d62;            /* deep teal — match your resume */
+}
+*{ box-sizing:border-box; margin:0; }
+html,body{ background:#e9ecef; }
+body{ font-family:"Hanken Grotesk",system-ui,sans-serif; color:var(--ink); font-size:10.8pt; line-height:1.7; padding:24px 0; -webkit-font-smoothing:antialiased; }
+.page{ width:210mm; min-height:297mm; margin:0 auto; background:var(--paper); padding:20mm 22mm; box-shadow:0 10px 40px -12px rgba(0,0,0,.25); display:flex; flex-direction:column; }
+
+.head{ display:flex; justify-content:space-between; align-items:flex-start; gap:8mm; padding-bottom:6mm; border-bottom:2px solid var(--accent); }
+.name{ font-family:"Spectral",Georgia,serif; font-weight:600; font-size:24pt; line-height:1.05; }
+.role{ color:var(--accent); font-weight:600; font-size:10.5pt; letter-spacing:.1em; text-transform:uppercase; margin-top:1.5mm; }
+.head .contact{ text-align:right; font-size:9.4pt; color:var(--soft); line-height:1.7; white-space:nowrap; }
+
+.meta{ margin-top:9mm; font-size:10pt; color:var(--soft); }
+.meta .date{ color:var(--muted); }
+.meta .to{ margin-top:5mm; }
+.meta .to b{ color:var(--ink); }
+
+.body{ margin-top:8mm; }
+.body p{ margin-bottom:4.5mm; color:var(--soft); }
+.body p.greet{ color:var(--ink); font-weight:600; }
+.body strong{ color:var(--ink); font-weight:600; }
+
+.sign{ margin-top:auto; padding-top:10mm; }
+.sign .off{ color:var(--soft); }
+.sign .me{ font-family:"Spectral",serif; font-weight:600; font-size:14pt; margin-top:3mm; color:var(--accent); }
+.sign .role2{ color:var(--muted); font-size:9.6pt; }
+
+@page{ size:A4; margin:0; }
+@media print{ html,body{ background:#fff; } body{ padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; } .page{ box-shadow:none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div>
+      <div class="name">Alex Morgan</div>
+      <div class="role">Senior Product Designer</div>
+    </div>
+    <div class="contact">alex.morgan@email.com<br>+1 555 0142<br>San Francisco, CA<br>alexmorgan.design</div>
+  </header>
+
+  <div class="meta">
+    <div class="date">14 March 2026</div>
+    <div class="to">
+      <b>Dana Okonkwo</b><br>
+      Head of Design, Plenari<br>
+      San Francisco, CA
+    </div>
+  </div>
+
+  <div class="body">
+    <p class="greet">Dear Dana,</p>
+    <p>I'm writing to apply for the Senior Product Designer role at Plenari. I've followed your team's work for a while, and the way you treat clarity as a feature rather than an afterthought is exactly the kind of product thinking I want to be part of.</p>
+    <p>Over the last eight years I've designed end to end, from research and flows to the shipped, polished interface. At my current company I led the redesign of our core dashboard, which lifted weekly active use by <strong>31%</strong>, and built the design system that now keeps fourteen engineers moving in the same direction. I care about the small decisions that quietly add up to something people trust.</p>
+    <p>What draws me to Plenari specifically is the chance to do that work with a small, senior team and a real say in the outcome. I'd bring a calm, systems-minded approach, a habit of writing decisions down, and a portfolio of work I'm genuinely proud of.</p>
+    <p>I'd welcome the chance to talk through how I could help. Thank you for your time and consideration.</p>
+  </div>
+
+  <div class="sign">
+    <div class="off">Warm regards,</div>
+    <div class="me">Alex Morgan</div>
+    <div class="role2">Senior Product Designer</div>
+  </div>
+</div>
+</body>
+</html>

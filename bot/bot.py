@@ -64,10 +64,16 @@ CATALOG = {
                   "blurb": "An architectural property listing with a full-bleed home tour, a facts row, a gallery and a viewing CTA."},
     "resume-modern":  {"title": "Resume — Modern · CV template",  "price": 390, "file": "resume-modern.zip",
                        "blurb": "A two-column modern resume: sidebar with skill bars and a clean timeline. Print-ready A4."},
-    "resume-classic": {"title": "Resume — Classic · CV template", "price": 390, "file": "resume-classic.zip",
-                       "blurb": "A clean, single-column, ATS-friendly resume. Recruiter- and parser-safe. Print-ready A4."},
+    "resume-classic": {"title": "Resume — Classic · FREE",        "price": 0,   "file": "resume-classic.zip",
+                       "blurb": "A clean, single-column, ATS-friendly resume. Our free gift, no payment needed."},
     "resume-bold":    {"title": "Resume — Bold · CV template",    "price": 390, "file": "resume-bold.zip",
                        "blurb": "A confident resume with a colour banner and two-column body. Stands out, reads clean. A4."},
+    "resume-twotone": {"title": "Resume — Two-Tone · CV template","price": 390, "file": "resume-twotone.zip",
+                       "blurb": "A full-colour sidebar resume with skill bars. Memorable and still professional. A4."},
+    "resume-executive":{"title": "Resume — Executive · CV",       "price": 390, "file": "resume-executive.zip",
+                       "blurb": "An understated, editorial resume for senior roles. Serif, calm, confident. A4."},
+    "cover-letter":   {"title": "Cover Letter · template",        "price": 290, "file": "cover-letter.zip",
+                       "blurb": "A matching cover letter: same typography and accent as the resume set. A4."},
     "bundle":    {"title": "All thirteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
                   "blurb": "Every website template in the store, together, with every future one added free."},
 }
@@ -96,8 +102,9 @@ async def notify_admin(bot, text: str) -> None:
 def catalog_keyboard() -> InlineKeyboardBuilder:
     kb = InlineKeyboardBuilder()
     for key, p in CATALOG.items():
+        price = "FREE 🎁" if p["price"] == 0 else f"★ {p['price']}"
         kb.row(InlineKeyboardButton(
-            text=f"{p['title'].split('—')[0].strip()} · ★ {p['price']}",
+            text=f"{p['title'].split('—')[0].split('·')[0].strip()} · {price}",
             callback_data=f"buy:{key}",
         ))
     if STORE_URL:
@@ -105,10 +112,35 @@ def catalog_keyboard() -> InlineKeyboardBuilder:
     return kb
 
 
+async def deliver(message: Message, key: str, free: bool = False) -> None:
+    """Send the product zip to the chat."""
+    p = CATALOG[key]
+    path = DIST / p["file"]
+    if not path.exists():
+        await message.answer("The file is being prepared, "
+                             f"contact {SUPPORT} if it doesn't arrive shortly.")
+        log.error("MISSING FILE %s", path)
+        return
+    head = f"Here's <b>{p['title']}</b>, free. Enjoy! 🎁" if free else f"Thanks for buying <b>{p['title']}</b>. ❤️"
+    await message.answer_document(
+        FSInputFile(path),
+        caption=(
+            f"{head}\n\n"
+            "Inside: the template, a README and the license.\n"
+            "Open index.html in any browser, edit the text, print to PDF or ship it.\n\n"
+            f"More templates: {STORE_URL}"
+        ),
+    )
+
+
 async def send_invoice(message: Message, key: str) -> None:
     p = CATALOG.get(key)
     if not p:
         await message.answer("That item isn't in the store. Send /start to see what's available.")
+        return
+    if p["price"] == 0:
+        await deliver(message, key, free=True)
+        await notify_admin(message.bot, f"🎁 Free download: <b>{p['title']}</b>\nchat id <code>{message.chat.id}</code>")
         return
     await message.answer_invoice(
         title=p["title"],
@@ -175,21 +207,7 @@ async def on_paid(message: Message) -> None:
         await message.answer("Payment received, but I couldn't match the item. "
                              f"Contact {SUPPORT} and we'll sort it out.")
         return
-    path = DIST / p["file"]
-    if not path.exists():
-        await message.answer("Payment received. Your file is being prepared, "
-                             f"contact {SUPPORT} if it doesn't arrive shortly.")
-        log.error("MISSING FILE %s", path)
-        return
-    await message.answer_document(
-        FSInputFile(path),
-        caption=(
-            f"Thanks for buying <b>{p['title']}</b>. ❤️\n\n"
-            "Inside: the template HTML, a README and the license.\n"
-            "Open index.html in any browser, edit the text and colors, ship it.\n\n"
-            f"Questions or need a tweak? {SUPPORT} · murzi.studio"
-        ),
-    )
+    await deliver(message, key)
 
 
 @dp.message(Command("paysupport"))
