@@ -44,6 +44,12 @@ A small-business budget & cashflow tracker in Excel. Type your income and expens
 A 12-slide investor pitch deck in editable PowerPoint. Problem, market, an editable traction chart and a clean use-of-funds ask — built on fonts that open anywhere. Fill in your story and pitch with confidence.
 #pitchdeck #startupfunding #investordeck #powerpointtemplate #founders #startuptips
 
+## 7 — pin-salon.png  ·  board: Small Business Marketing
+**Title:** A Salon Website That Fills the Appointment Book
+**Description:**
+A warm, boutique website template for a hair, nail or beauty salon. A full price service menu, gallery, stylist team, reviews and an online booking form — everything a new client needs to book their first chair. One file, easy to rebrand.
+#salonwebsite #hairsalon #beautysalon #salonmarketing #websitetemplate #webdesign
+
 ---
 
 ### Reusable hashtag sets
