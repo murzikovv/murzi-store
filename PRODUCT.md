@@ -6,4 +6,4 @@ One-page storefront selling premium single-file HTML website templates and busin
 - audience: small-business owners and creators who want a finished site today, not a builder subscription
 - catalog: 19 website templates (★390–790), 5 resumes + cover letter, pitch deck (.pptx), budget tracker (.xlsx), all-sites bundle ★2990
 - hard requirements: keep every `data-buy` slug, preview links into `templates/`, preview images in `previews/`, bot deep-link JS
-- aesthetic direction (2026-06): "poster press" — drenched oxblood red, pure white catalog, ink borders, single variable family (Archivo) from Black Expanded display to text widths
+- aesthetic direction (2026-06): "electric atelier" — ice-white surface, electric violet, living aurora hero with floating preview cards, GSAP+Lenis motion, Archivo variable
