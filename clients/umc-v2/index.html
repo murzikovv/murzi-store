@@ -17,15 +17,17 @@
    Демо-редизайн от murzi.studio.
    ============================================================ */
 :root{
-  --paper:   #f3eee6;
-  --paper-2: #ebe3d6;
-  --ink:     #221c15;
-  --ink-2:   #3b3328;
-  --soft:    #5d5346;
-  --muted:   #8d8273;
-  --line:    rgba(34,28,21,0.16);
-  --clay:    #b07a52;
-  --clay-dp: #8c5d39;
+  --paper:   #f4f7fc;
+  --paper-2: #e7eff9;
+  --ink:     #0c2461;
+  --ink-2:   #16347e;
+  --soft:    #46557a;
+  --muted:   #7d8aa8;
+  --line:    rgba(12,36,97,0.14);
+  --clay:    #1d44a0;
+  --clay-dp: #15327a;
+  --gold:    #f7c52d;
+  --gold-dp: #d9a200;
   --navy:    #0a2260;
   --disp: "Prata", Georgia, serif;
   --body: "Golos Text", system-ui, sans-serif;
@@ -57,6 +59,9 @@ p{ text-wrap:pretty; }
 .btn:hover{ transform:translateY(-2px); background:var(--clay-dp); border-color:var(--clay-dp); color:#fff; }
 .btn--clay{ background:var(--clay); border-color:var(--clay); color:#fff; }
 .btn--clay:hover{ background:var(--clay-dp); border-color:var(--clay-dp); }
+.btn--gold{ background:var(--gold); border-color:var(--gold); color:#21314f; }
+.btn--gold:hover{ background:var(--gold-dp); border-color:var(--gold-dp); color:#1a2540; }
+.mark{ background:linear-gradient(transparent 58%, var(--gold) 58%); padding:0 0.06em; border-radius:2px; }
 .btn--ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
 .btn--ghost:hover{ background:transparent; border-color:var(--ink); color:var(--ink); transform:translateY(-2px); }
 
@@ -85,7 +90,7 @@ p{ text-wrap:pretty; }
 .hero__eyebrow{ display:flex; align-items:center; gap:0.9em; margin-bottom:1.8rem; }
 .hero__eyebrow::after{ content:""; flex:1; height:1px; background:var(--line); max-width:120px; }
 .hero h1{ text-wrap:balance; }
-.hero h1 em{ font-style:italic; color:var(--clay-dp); }
+.hero h1 em{ font-style:italic; color:var(--ink); background:linear-gradient(transparent 58%, var(--gold) 58%); padding:0 0.05em; }
 .hero__lead{ margin-top:1.8rem; max-width:42ch; color:var(--soft); font-size:clamp(1.05rem,1rem+0.3vw,1.2rem); }
 .hero__meta{ margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; font-size:0.86rem; color:var(--muted); }
 .hero__meta i{ width:4px; height:4px; border-radius:50%; background:var(--clay); display:inline-block; }
@@ -131,7 +136,7 @@ p{ text-wrap:pretty; }
 /* manifest */
 .manif{ display:grid; grid-template-columns:1.25fr 0.75fr; gap:clamp(2rem,5vw,5rem); align-items:end; }
 .manif__q{ font-family:var(--disp); font-size:clamp(1.8rem,1.2rem+2.4vw,3.4rem); line-height:1.18; }
-.manif__q em{ font-style:italic; color:var(--clay-dp); }
+.manif__q em{ font-style:italic; color:var(--ink); background:linear-gradient(transparent 60%, var(--gold) 60%); padding:0 0.05em; }
 .manif__side p{ color:var(--soft); }
 .manif__facts{ margin:1.8rem 0 0; padding:0; list-style:none; display:flex; flex-direction:column; }
 .manif__facts li{ display:flex; justify-content:space-between; gap:1rem; padding:0.85rem 0; border-top:1px solid var(--line); font-size:0.92rem; }
@@ -172,7 +177,7 @@ p{ text-wrap:pretty; }
 
 /* testimonial */
 .testi{ text-align:center; max-width:24ch; margin-inline:auto; }
-.testi .stars{ color:var(--clay); letter-spacing:0.2em; }
+.testi .stars{ color:var(--gold-dp); letter-spacing:0.2em; }
 .testi blockquote{ font-family:var(--disp); font-size:clamp(1.8rem,1.3rem+2.2vw,3.4rem); line-height:1.2; margin:1.2rem 0; max-width:none; }
 .testi figcaption{ color:var(--muted); font-size:0.9rem; }
 
@@ -191,19 +196,19 @@ p{ text-wrap:pretty; }
 @media(max-width:760px){ .contact{ grid-template-columns:1fr; } }
 
 /* booking */
-.cta{ background:var(--ink); color:var(--paper); border-radius:12px; padding:clamp(2.4rem,6vw,5rem); }
+.cta{ background:linear-gradient(135deg, #1f4cb0, #0c2461); color:var(--paper); border-radius:18px; padding:clamp(2.4rem,6vw,5rem); }
 .cta__grid{ display:grid; grid-template-columns:1fr 0.85fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
 .cta h2{ color:var(--paper); }
-.cta h2 em{ font-style:italic; color:var(--clay); }
-.cta p{ margin-top:1.1rem; color:#c9bfae; max-width:34ch; }
-.form label{ display:block; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; color:#b6ab98; margin:1rem 0 0.4rem; }
-.form input, .form select{ width:100%; padding:0.9em 1em; border:1px solid rgba(243,238,230,0.2); border-radius:10px; background:transparent; color:var(--paper); font:inherit; font-size:1rem; }
-.form input::placeholder{ color:#8a8170; }
-.form input:focus, .form select:focus{ outline:none; border-color:var(--clay); }
+.cta h2 em{ font-style:italic; color:var(--gold); }
+.cta p{ margin-top:1.1rem; color:#c3d2f0; max-width:34ch; }
+.form label{ display:block; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; color:#aebde0; margin:1rem 0 0.4rem; }
+.form input, .form select{ width:100%; padding:0.9em 1em; border:1px solid rgba(243,247,252,0.24); border-radius:10px; background:rgba(255,255,255,0.05); color:var(--paper); font:inherit; font-size:1rem; }
+.form input::placeholder{ color:#8fa0c8; }
+.form input:focus, .form select:focus{ outline:none; border-color:var(--gold); }
 .form select{ color:var(--paper); } .form option{ color:#111; }
 .form .row{ display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
 .form .btn{ width:100%; margin-top:1.4rem; }
-.form .fine{ margin:0.9rem 0 0; font-size:0.76rem; color:#9c917e; }
+.form .fine{ margin:0.9rem 0 0; font-size:0.76rem; color:#9fb0d6; }
 @media(max-width:780px){ .cta__grid{ grid-template-columns:1fr; } .form .row{ grid-template-columns:1fr; } }
 
 /* footer */
@@ -431,7 +436,7 @@ p{ text-wrap:pretty; }
         </div>
         <label for="dr">Направление</label>
         <select id="dr"><option>Пластическая хирургия</option><option>Косметология</option><option>ЛОР-хирургия</option><option>Терапия</option><option>Не определился(ась)</option></select>
-        <button class="btn btn--clay" type="submit">Записаться на консультацию</button>
+        <button class="btn btn--gold" type="submit">Записаться на консультацию</button>
         <p class="fine">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Имеются противопоказания — необходима консультация специалиста.</p>
       </form>
     </div>
