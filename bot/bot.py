@@ -74,6 +74,8 @@ CATALOG = {
                        "blurb": "An understated, editorial resume for senior roles. Serif, calm, confident. A4."},
     "cover-letter":   {"title": "Cover Letter · template",        "price": 290, "file": "cover-letter.zip",
                        "blurb": "A matching cover letter: same typography and accent as the resume set. A4."},
+    "blocks":    {"title": "Blocks · 14 copy-paste sections kit",       "price": 990, "file": "blocks.zip",
+                  "blurb": "A library of 14 hand-built website sections: heroes, pricing, FAQ, testimonials, stats, team and more. Theme toggle, accent picker, a Copy button on every block. Unlimited projects."},
     "barbershop":{"title": "Hollow & Crane · barbershop site",          "price": 690, "file": "barbershop.zip",
                   "blurb": "A charcoal-and-brass barbershop website. Full price list, barber profiles, gallery, hours and a booking CTA. One HTML file, no build step."},
     "photographer":{"title": "Ila Reyn · photographer portfolio site",  "price": 690, "file": "photographer.zip",

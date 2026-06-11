@@ -1,0 +1,20 @@
+murzi/store — Library License
+Product: "Blocks" (14 copy-paste website sections)
+
+Copyright (c) 2026 murzi.studio. All rights reserved.
+
+WHAT YOU MAY DO
+- Use the sections in UNLIMITED end products: your own sites and
+  client work, personal or commercial.
+- Modify everything freely; combine sections into full pages.
+- Deploy and host the results anywhere, no attribution required.
+
+WHAT YOU MAY NOT DO
+- Resell, redistribute, sublicense, or give away the library itself
+  (the source file), modified or not.
+- Include the library in another template, kit, or marketplace item.
+- Share your copy publicly (e.g. a public repo containing the full library).
+
+The product is what you build with the sections, not the library file.
+
+Questions or an extended license? Contact murzi.studio.
