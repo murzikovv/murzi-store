@@ -50,6 +50,18 @@ A 12-slide investor pitch deck in editable PowerPoint. Problem, market, an edita
 A warm, boutique website template for a hair, nail or beauty salon. A full price service menu, gallery, stylist team, reviews and an online booking form — everything a new client needs to book their first chair. One file, easy to rebrand.
 #salonwebsite #hairsalon #beautysalon #salonmarketing #websitetemplate #webdesign
 
+## 8 — pin-wedding.png  ·  board: Wedding Inspiration
+**Title:** A Wedding Website Your Guests Will Actually Use
+**Description:**
+A romantic one-page wedding website template. A live countdown to the big day, your story, the schedule, venue and directions, a gallery, gift registry and an RSVP form — all on warm ivory with a flourishing script. One file, easy to make yours.
+#weddingwebsite #weddinginvitation #weddingplanning #rsvp #weddingstationery #websitetemplate
+
+## 9 — pin-cafe.png  ·  board: Small Business Marketing
+**Title:** A Café Website That Practically Smells Like Coffee
+**Description:**
+A warm, inviting website template for a coffee shop, café or brunch spot. A split hero, full typographic menu, a roastery story, gallery, opening hours and an order-ahead call-to-action. Cosy, characterful and easy to rebrand.
+#cafewebsite #coffeeshop #coffeebranding #smallbusinesswebsite #websitetemplate #webdesign
+
 ---
 
 ### Reusable hashtag sets

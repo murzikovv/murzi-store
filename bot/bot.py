@@ -74,6 +74,10 @@ CATALOG = {
                        "blurb": "An understated, editorial resume for senior roles. Serif, calm, confident. A4."},
     "cover-letter":   {"title": "Cover Letter · template",        "price": 290, "file": "cover-letter.zip",
                        "blurb": "A matching cover letter: same typography and accent as the resume set. A4."},
+    "wedding":   {"title": "Forever · wedding invitation site",         "price": 690, "file": "wedding.zip",
+                  "blurb": "A romantic one-page wedding website. Hero with a live countdown, your story, schedule, venue, gallery, gift registry and an RSVP form. One HTML file, easy to rebrand."},
+    "cafe":      {"title": "Daybreak · coffee shop / café site",         "price": 690, "file": "cafe.zip",
+                  "blurb": "A warm website for a coffee shop or café. Split hero, a full typographic menu, a roastery story, gallery, opening hours and an order-ahead CTA. One HTML file."},
     "salon":     {"title": "Halo · hair & beauty salon site",           "price": 690, "file": "salon.zip",
                   "blurb": "A warm boutique website for a hair, nail or beauty salon. Full price service menu, gallery, stylist team, reviews and a booking form with opening hours. One HTML file."},
     "fitness":   {"title": "Apex · fitness / gym studio site",          "price": 690, "file": "fitness.zip",
@@ -86,7 +90,7 @@ CATALOG = {
                    "blurb": "A 12-slide seed pitch deck in editable PowerPoint. Problem, market, traction chart, ask — every slide ready to fill in. Built-in fonts, opens anywhere."},
     "tracker":   {"title": "Ledger · budget & cashflow tracker (.xlsx)", "price": 490, "file": "tracker.zip",
                   "blurb": "A small-business budget tracker in Excel. Type your income and expenses; the dashboard, monthly net and charts update themselves. Plain SUM formulas, no macros."},
-    "bundle":    {"title": "All seventeen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
+    "bundle":    {"title": "All nineteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
                   "blurb": "Every website template in the store, together, with every future one added free."},
 }
 
