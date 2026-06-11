@@ -74,6 +74,8 @@ CATALOG = {
                        "blurb": "An understated, editorial resume for senior roles. Serif, calm, confident. A4."},
     "cover-letter":   {"title": "Cover Letter · template",        "price": 290, "file": "cover-letter.zip",
                        "blurb": "A matching cover letter: same typography and accent as the resume set. A4."},
+    "fitness":   {"title": "Apex · fitness / gym studio site",          "price": 690, "file": "fitness.zip",
+                  "blurb": "A high-energy website for a gym or strength studio. Cinematic hero, programs grid, a real weekly class schedule, coaches, three membership tiers and a free-trial CTA. One HTML file."},
     "clinic":    {"title": "Aurelia · clinic (surgery / dental) site",  "price": 790, "file": "clinic.zip",
                   "blurb": "A couture website for an aesthetic, plastic surgery or dental clinic. Treatments grid, surgeon profiles, accreditations, process, FAQ and a private booking form. One HTML file, no build step."},
     "home-services": {"title": "Brightwork · home services site",      "price": 690, "file": "home-services.zip",
@@ -82,7 +84,7 @@ CATALOG = {
                    "blurb": "A 12-slide seed pitch deck in editable PowerPoint. Problem, market, traction chart, ask — every slide ready to fill in. Built-in fonts, opens anywhere."},
     "tracker":   {"title": "Ledger · budget & cashflow tracker (.xlsx)", "price": 490, "file": "tracker.zip",
                   "blurb": "A small-business budget tracker in Excel. Type your income and expenses; the dashboard, monthly net and charts update themselves. Plain SUM formulas, no macros."},
-    "bundle":    {"title": "All fifteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
+    "bundle":    {"title": "All sixteen website templates · bundle", "price": 2990, "file": "murzi-templates-bundle.zip",
                   "blurb": "Every website template in the store, together, with every future one added free."},
 }
 
